@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">Leo3418/java-ebuilder</remote-id>
+	</upstream>
+	<longdescription>
+		The ebuilds provided here in this ebuild repository for java-ebuilder
+		install a version modified during Google Summer of Code 2021, which has
+		patches that are yet to be merged into the upstream.
+	</longdescription>
+</pkgmetadata>
