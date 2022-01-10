@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">Leo3418/ebuild-commander</remote-id>
+	</upstream>
+	<longdescription>
+		ebuild-commander is a tool designed for ebuild installation testing.
+		Inspired by ebuildtester, ebuild-commander tests ebuilds in Docker
+		container derived from Gentoo stage3 images too, but it allows for
+		finer granularity of control over the tests. Multiple 'emerge'
+		commands and any arbitrary commands like 'cp' and 'rm' can be run
+		within the container in a test. Portage configuration for a test,
+		including directories not limited to 'package.accept_keywords',
+		'package.env', 'env' and 'package.use', can be fully customized.
+		Alternative container engines that are not Docker but provide a
+		command-line interface compatible with Docker, such as Podman, can
+		be used with ebuild-commander, exploiting their advantages like
+		ability to use containers with a non-root user account.
+	</longdescription>
+</pkgmetadata>
