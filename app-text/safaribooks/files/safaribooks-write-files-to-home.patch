@@ -1,0 +1,27 @@
+From e2b0a25c4dd9e10d1a4d3bc80f81235764ee37e8 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Thu, 26 Aug 2021 11:48:59 -0700
+Subject: [PATCH] Write all log and configuration files to `~/.safaribooks`
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ safaribooks.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/safaribooks.py b/safaribooks.py
+index a7f6fdb..70d021e 100755
+--- a/safaribooks.py
++++ b/safaribooks.py
+@@ -18,7 +18,8 @@ from multiprocessing import Process, Queue, Value
+ from urllib.parse import urljoin, urlparse, parse_qs, quote_plus
+ 
+ 
+-PATH = os.path.dirname(os.path.realpath(__file__))
++PATH = os.path.expanduser('~/.safaribooks')
++os.makedirs(PATH, exist_ok=True)
+ COOKIES_FILE = os.path.join(PATH, "cookies.json")
+ 
+ ORLY_BASE_HOST = "oreilly.com"  # PLEASE INSERT URL HERE
+-- 
+2.31.1
+
