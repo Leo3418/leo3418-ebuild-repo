@@ -1,0 +1,16 @@
+name: "Scan ebuilds with pkgcheck"
+
+on:
+  push:
+  pull_request:
+  schedule:
+    # Run weekly to capture changes in ::gentoo
+    - cron: '0 0 * * THU'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Run pkgcheck"
+        uses: pkgcore/pkgcheck-action@v1

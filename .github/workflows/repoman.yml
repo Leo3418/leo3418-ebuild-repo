@@ -1,0 +1,20 @@
+name: "Scan ebuilds with repoman"
+
+on:
+  push:
+  pull_request:
+  schedule:
+    # Run weekly to capture changes in ::gentoo
+    - cron: '0 0 * * THU'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Set up master ::gentoo"
+        run: .github/workflow-scripts/setup-master-gentoo.sh
+      - name: "Set up repoman"
+        run: .github/workflow-scripts/setup-portage.sh repoman
+      - name: "Run repoman"
+        run: repoman -dx full
