@@ -31,8 +31,10 @@ RESTRICT="test"
 
 RDEPEND="
 	${PYTHON_DEPS}
-	dev-python/lxml
-	dev-python/requests
+	$(python_gen_cond_dep '
+		dev-python/lxml[${PYTHON_USEDEP}]
+		dev-python/requests[${PYTHON_USEDEP}]
+	')
 "
 
 DEPEND="
