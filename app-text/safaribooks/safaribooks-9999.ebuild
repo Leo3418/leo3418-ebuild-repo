@@ -14,7 +14,7 @@ else
 	# Live ebuild: Might be intentionally left blank
 	# Normal ebuild: Fill in commit SHA-1 object name to this variable's value
 	GIT_COMMIT=""
-	KEYWORDS="amd64"
+	KEYWORDS="~amd64"
 
 	SRC_URI="https://github.com/lorenzodifuccia/safaribooks/archive/${GIT_COMMIT}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}-${GIT_COMMIT}"
