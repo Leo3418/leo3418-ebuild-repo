@@ -19,6 +19,7 @@ HOMEPAGE="https://github.com/mjakeman/extension-manager"
 LICENSE="GPL-3+"
 SLOT="0"
 
+IUSE="test"
 # 'Validate appstream file' test case requires Internet connection
 PROPERTIES="test_network"
 RESTRICT="test"
@@ -26,6 +27,11 @@ RESTRICT="test"
 BDEPEND="
 	dev-util/blueprint-compiler
 	virtual/pkgconfig
+	test? (
+		dev-libs/appstream-glib
+		dev-libs/glib:2
+		dev-util/desktop-file-utils
+	)
 "
 
 DEPEND="
