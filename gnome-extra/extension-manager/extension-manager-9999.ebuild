@@ -36,8 +36,8 @@ BDEPEND="
 
 DEPEND="
 	dev-libs/json-glib
-	gui-libs/gtk:4
-	gui-libs/libadwaita:1
+	gui-libs/gtk:4[introspection]
+	gui-libs/libadwaita:1[introspection]
 	net-libs/libsoup:3.0
 "
 
