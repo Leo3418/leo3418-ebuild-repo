@@ -16,7 +16,7 @@ else
 	GIT_COMMIT=""
 	KEYWORDS="~amd64"
 
-	SRC_URI="https://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/${GIT_COMMIT}/blueprint-compiler-${GIT_COMMIT}.tar.gz"
+	SRC_URI="https://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/${GIT_COMMIT}/blueprint-compiler-${GIT_COMMIT}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}-${GIT_COMMIT}"
 fi
 
