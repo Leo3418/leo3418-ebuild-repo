@@ -35,6 +35,7 @@ BDEPEND="
 "
 
 DEPEND="
+	dev-libs/glib:2
 	dev-libs/json-glib
 	gui-libs/gtk:4[introspection]
 	gui-libs/libadwaita:1[introspection]
@@ -43,7 +44,6 @@ DEPEND="
 
 RDEPEND="
 	${DEPEND}
-	dev-libs/glib:2
 "
 
 pkg_postinst() {
