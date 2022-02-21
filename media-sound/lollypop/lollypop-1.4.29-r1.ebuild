@@ -59,19 +59,12 @@ src_install() {
 	python_fix_shebang "${ED}/usr/bin"
 }
 
-pkg_preinst() {
-	gnome2_schemas_savelist
-	xdg_pkg_preinst
-}
-
 pkg_postinst() {
-	gnome2_gconf_install
-	gnome2_schemas_update
 	xdg_pkg_postinst
+	gnome2_schemas_update
 }
 
 pkg_postrm() {
-	gnome2_gconf_uninstall
-	gnome2_schemas_update
 	xdg_pkg_postrm
+	gnome2_schemas_update
 }
