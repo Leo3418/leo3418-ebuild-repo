@@ -30,8 +30,3 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
-
-# Yuan Liao <liaoyuan@gmail.com> (2022-01-13)
-# Depends on masked net-libs/libsoup:3.0.
-# Masked until those packages are unmasked.
-gnome-extra/extension-manager
