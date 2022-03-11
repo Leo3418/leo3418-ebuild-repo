@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<longdescription lang="en">
+		Extreme Tux Racer is a racing game featuring Tux, the Linux Penguin.
+		Extreme Tux Racer continues in the tracks of Tux Racer and its forks.
+
+		The packages offered here provide a 'vanilla' USE flag, which, when
+		disabled, makes the music files from Tux Racer be installed for those
+		who enjoy the original, nostalgic music sound tracks more.  Enabling
+		the USE flag causes music files from Extreme Tux Racer, some of which
+		differ from Tux Racer's music, to be installed instead.
+	</longdescription>
+	<upstream>
+		<remote-id type="sourceforge">extremetuxracer</remote-id>
+	</upstream>
+	<use>
+		<flag name="vanilla">
+			Use game music from Extreme Tux Racer
+			instead of the original Tux Racer
+		</flag>
+	</use>
+</pkgmetadata>
