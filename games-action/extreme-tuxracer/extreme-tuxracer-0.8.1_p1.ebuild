@@ -71,10 +71,10 @@ src_compile() {
 	local factor=10 # Use best quality
 	ebegin "Converting WAV files to Ogg"
 	sox start1-jt.wav -C "${factor}" start1-jt.ogg \
-		trim 0 =22.25 =25.02 =27.82 ||
+		trim 0 =22.26 =25.02 =27.84 ||
 		die "Failed to convert start1-jt.wav to Ogg"
 	sox race1-jt.wav -C "${factor}" race1-jt.ogg \
-		trim 0 50.87 ||
+		trim 0.02 50.92 ||
 		die "Failed to convert race1-jt.wav to Ogg"
 
 	cp -v *.ogg "${S}/data/music" ||
