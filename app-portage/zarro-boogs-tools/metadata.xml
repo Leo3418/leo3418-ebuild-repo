@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/Leo3418/zarro-boogs-tools/issues</bugs-to>
+		<changelog>https://github.com/Leo3418/zarro-boogs-tools/releases</changelog>
+		<remote-id type="github">Leo3418/zarro-boogs-tools</remote-id>
+	</upstream>
+</pkgmetadata>
