@@ -22,20 +22,11 @@ HOMEPAGE="https://github.com/Leo3418/zarro-boogs-tools"
 LICENSE="GPL-3+"
 SLOT="0"
 
-IUSE="test"
-RESTRICT="!test? ( test )"
-
 RDEPEND="
 	app-portage/nattka[${PYTHON_USEDEP}]
 	dev-python/requests[${PYTHON_USEDEP}]
 	dev-util/pkgcheck[${PYTHON_USEDEP}]
 	sys-apps/pkgcore[${PYTHON_USEDEP}]
-"
-
-BDEPEND="
-	test? (
-		${RDEPEND}
-	)
 "
 
 distutils_enable_tests unittest
