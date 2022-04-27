@@ -45,6 +45,7 @@ PATCHES=(
 python_install() {
 	python_moduleinto "${PN}"
 	python_domodule *.py
+	local py_src exe
 	for py_src in *.py; do
 		exe="${py_src%.py}"
 		make_wrapper "${exe}.tmp" \
