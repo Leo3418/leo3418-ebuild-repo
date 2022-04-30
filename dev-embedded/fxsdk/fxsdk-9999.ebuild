@@ -4,7 +4,7 @@
 EAPI=8
 
 PYTHON_COMPAT=( python3_{9..10} )
-inherit cmake python-r1
+inherit cmake optfeature python-r1
 
 if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
@@ -79,4 +79,11 @@ src_install() {
 		die "Failed to move Python files for fxconv to ${T}"
 	python_foreach_impl python_domodule "${T}/fxconv.py"
 	python_foreach_impl python_doscript "${T}/fxconv"
+}
+
+pkg_postinst() {
+	elog "To build projects created using this SDK, it might"
+	optfeature_header "be necessary to have these packages installed:"
+	optfeature "a library and kernel for add-ins" dev-embedded/gint
+	optfeature "creating .g3a files for fx-CG50" dev-embedded/mkg3a
 }
