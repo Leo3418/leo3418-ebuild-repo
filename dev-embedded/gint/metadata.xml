@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<use>
+		<flag name="kmalloc-debug">
+			Enable debug functions for kmalloc
+		</flag>
+		<flag name="static-gray">
+			Use static memory instead of malloc() for the gray engine's VRAMs
+			(Effective for fx-9860G only)
+		</flag>
+		<flag name="user-vram">
+			Put all VRAMs into the user stack (takes up 350k/512k)
+			(Effective for fx-CG50 only)
+		</flag>
+	</use>
+	<upstream>
+		<bugs-to>https://gitea.planet-casio.com/Lephenixnoir/gint/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
