@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<longdescription>
+		This package provides data communication functionality with
+		CASIO graphing calculators that is comparable to FA-124.
+	</longdescription>
+</pkgmetadata>
