@@ -27,6 +27,7 @@ inherit flag-o-matic
 EXPORT_FUNCTIONS pkg_setup
 
 BDEPEND="
+	dev-embedded/sh-elf-binutils
 	dev-embedded/sh-elf-gcc
 "
 
