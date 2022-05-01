@@ -19,18 +19,25 @@ LICENSE="GPL-3+ LGPL-3+ || ( GPL-3+ libgcc libstdc++ gcc-runtime-library-excepti
 SLOT="0"
 KEYWORDS="~amd64"
 
-# Support for some dependencies will be enabled if it is not specified in
-# configure arguments.  The scripts in the sh-elf-gcc repository do not include
-# the arguments controlling some of those dependencies, so they would build a
-# compiler with support for such dependencies enabled.  This ebuild enables
-# some USE flags by default to follow suit: zstd
-IUSE="custom-cflags +nls +zstd"
+# GCC's configure script may automagically enable support for installed
+# dependencies that it detects if the related configuration option is never
+# specified.  The scripts in the sh-elf-gcc repository barely include any such
+# options, so a lot of dependencies' support would be automagically configured.
+#
+# To minimize the difference between the compiler built by this ebuild and the
+# compiler one might get by running the sh-elf-gcc scripts outside Portage on a
+# Gentoo system, USE flags whose USE-conditional dependencies are installed in
+# a new stage3 environment are enabled by default.  Such USE flags include:
+#
+# - zstd: app-arch/zstd pulled in by sys-apps/portage
+IUSE="custom-cflags graphite +nls valgrind +zstd"
 
 BDEPEND="
 	dev-embedded/sh-elf-binutils
 	>=sys-devel/bison-1.875
 	>=sys-devel/flex-2.5.4
 	nls? ( sys-devel/gettext )
+	valgrind? ( dev-util/valgrind )
 "
 
 RDEPEND="
@@ -39,6 +46,7 @@ RDEPEND="
 	>=dev-libs/gmp-4.3.2:0=
 	>=dev-libs/mpfr-2.4.2:0=
 	>=dev-libs/mpc-0.8.1:0=
+	graphite? ( >=dev-libs/isl-0.14:0= )
 	nls? ( virtual/libintl )
 	zstd? ( app-arch/zstd:= )
 "
@@ -124,6 +132,7 @@ src_configure() {
 
 	confgcc+=(
 		--with-system-zlib
+		$(use_enable valgrind valgrind-annotations)
 		$(use_with zstd)
 	)
 
@@ -132,6 +141,9 @@ src_configure() {
 	else
 		confgcc+=( --disable-nls )
 	fi
+
+	confgcc+=( $(use_with graphite isl) )
+	use graphite && confgcc+=( --disable-isl-version-check )
 
 	### Cross-compiler options
 	confgcc+=(

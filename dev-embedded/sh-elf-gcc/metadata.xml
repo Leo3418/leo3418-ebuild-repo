@@ -12,4 +12,14 @@
 		https://gitea.planet-casio.com/Lephenixnoir/sh-elf-gcc
 		plus extra options to adapt this package for Gentoo and Portage.
 	</longdescription>
+	<use>
+		<flag name="graphite">
+			Add support for the framework for loop optimizations
+			based on a polyhedral intermediate representation
+		</flag>
+		<flag name="valgrind">
+			Enable valgrind annotations for GCC internals
+			(useful for GCC debugging)
+		</flag>
+	</use>
 </pkgmetadata>
