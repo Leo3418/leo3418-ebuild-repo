@@ -58,7 +58,7 @@ src_configure() {
 src_compile() {
 	local CC="$(tc-getCC)"
 	# For more details, please search for these variables' names in
-	# Makefile.vars; to find toolchain program variables that needs
+	# Makefile.vars; to find toolchain program variables that need
 	# to be overridden, please search for 'TARGET' in the same file
 	emake \
 		CC="${CC}" LD="${CC}" \
