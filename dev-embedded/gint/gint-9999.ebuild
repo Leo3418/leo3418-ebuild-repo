@@ -8,6 +8,7 @@ inherit sh-elf
 if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://gitea.planet-casio.com/Lephenixnoir/gint.git"
+	EGIT_BRANCH="dev"
 else
 	SRC_URI="https://gitea.planet-casio.com/Lephenixnoir/gint/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}"
