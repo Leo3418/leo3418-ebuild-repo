@@ -9,6 +9,7 @@ inherit cmake optfeature python-r1
 if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://gitea.planet-casio.com/Lephenixnoir/fxsdk.git"
+	EGIT_BRANCH="dev"
 else
 	SRC_URI="https://gitea.planet-casio.com/Lephenixnoir/fxsdk/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}"
@@ -85,5 +86,5 @@ pkg_postinst() {
 	elog "To build projects created using this SDK, it might"
 	optfeature_header "be necessary to have these packages installed:"
 	optfeature "a library and kernel for add-ins" dev-embedded/gint
-	optfeature "creating .g3a files for fx-CG50" dev-embedded/mkg3a
+	optfeature "installing projects to fx-9860G" dev-embedded/p7utils
 }

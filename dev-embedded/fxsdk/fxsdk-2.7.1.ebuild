@@ -9,6 +9,7 @@ inherit cmake optfeature python-r1
 if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://gitea.planet-casio.com/Lephenixnoir/fxsdk.git"
+	EGIT_BRANCH="dev"
 else
 	SRC_URI="https://gitea.planet-casio.com/Lephenixnoir/fxsdk/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}"
