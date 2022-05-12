@@ -8,6 +8,7 @@ inherit cmake flag-o-matic sh-elf
 if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://gitea.planet-casio.com/Vhex-Kernel-Core/fxlibc.git"
+	EGIT_BRANCH="dev"
 else
 	SRC_URI="https://gitea.planet-casio.com/Vhex-Kernel-Core/fxlibc/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}"
