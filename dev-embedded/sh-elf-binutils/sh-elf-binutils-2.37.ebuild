@@ -161,7 +161,7 @@ src_install() {
 		local tool="${tool_prefixed#"${PROGRAM_PREFIX}"}"
 
 		# Allow cross-compiling GCC with the same CTARGET to find the tools
-		dosym -r "/usr/bin/${tool_prefixed}" "${BINPATH_LINKS}/${tool}"
+		dosym -r "${BINPATH}/${tool_prefixed}" "${BINPATH_LINKS}/${tool}"
 
 		# Allow toolchain-funcs.eclass to find the tools.  When the tools are
 		# used to build headers and libraries, the tools' CTARGET becomes the
