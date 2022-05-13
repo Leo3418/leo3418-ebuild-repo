@@ -32,7 +32,8 @@ DEPEND="
 "
 
 src_prepare() {
-	# Fix up installation destination of libraries and linker scripts
+	# Change installation destination of libraries and linker scripts
+	# from ${FXSDK_COMPILER_INSTALL} to ${FXSDK_COMPILER_INSTALL}/lib
 	sed -i \
 		-e '/TARGETS/s/\(${FXSDK_COMPILER_INSTALL}\)/\1\/lib/g' \
 		-e '/${LINKER_SCRIPT}/{n;s/\(${FXSDK_COMPILER_INSTALL}\)/\1\/lib/g}' \
@@ -59,17 +60,20 @@ src_configure() {
 		-DGINT_STATIC_GRAY="$(usex static-gray)"
 		-DGINT_USER_VRAM="$(usex user-vram)"
 	)
-	local command=( fxsdk build -c "${GINT_CMAKE_OPTIONS[@]}" )
-	echo "${command[@]}"
-	"${command[@]}" || die "configure failed"
+	set -- fxsdk build -c "${GINT_CMAKE_OPTIONS[@]}"
+	echo "${@}" >&2
+	"${@}" || die "configure failed"
 }
 
 src_compile() {
-	fxsdk build VERBOSE=1 ${MAKEOPTS} || die "compile failed"
+	set -- fxsdk build VERBOSE=1 ${MAKEOPTS}
+	echo "${@}" >&2
+	"${@}" || die "compile failed"
 }
 
 src_install() {
-	fxsdk build VERBOSE=1 ${MAKEOPTS} \
-		DESTDIR="${D}" install || die "install failed"
+	set -- fxsdk build VERBOSE=1 ${MAKEOPTS} DESTDIR="${D}" install
+	echo "${@}" >&2
+	"${@}" || die "install failed"
 	einstalldocs
 }
