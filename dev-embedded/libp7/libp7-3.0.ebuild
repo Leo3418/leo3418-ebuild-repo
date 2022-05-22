@@ -44,10 +44,10 @@ src_configure() {
 
 		CFLAGS="${CFLAGS}"
 		LDFLAGS="${LDFLAGS}"
-	)
 
-	use !man && myconf+=( --no-manpages )
-	use !usb && myconf+=( --no-libusb )
+		$(usev !man --no-manpages)
+		$(usev !usb --no-libusb)
+	)
 
 	econf "${myconf[@]}"
 }
