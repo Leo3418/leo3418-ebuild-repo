@@ -48,9 +48,9 @@ src_configure() {
 		# Also unlike libp7, CFLAGS and LDFLAGS are not recognized by
 		# this package's configure script either, so they must be set
 		# in src_compile instead as well.
-	)
 
-	use !man && myconf+=( --noinstall-manpages )
+		$(usev !man --noinstall-manpages)
+	)
 
 	econf "${myconf[@]}"
 }
