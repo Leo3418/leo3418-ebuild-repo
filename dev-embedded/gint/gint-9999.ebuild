@@ -21,7 +21,12 @@ HOMEPAGE="https://gitea.planet-casio.com/Lephenixnoir/gint"
 LICENSE="Lephenixnoir"
 SLOT="0"
 
-IUSE="kmalloc-debug static-gray user-vram"
+# The 'os-stack' USE flag corresponds to the 'GINT_NO_OS_STACK' CMake option,
+# which is set to 'OFF' by default when the project is being built by fxSDK.
+# Since 'no*' style USE flags should be avoided according to the devmanual,
+# this USE flag is devised to represent the negation of the CMake option
+# and is thus enabled by default accordingly.
+IUSE="kmalloc-debug +os-stack static-gray"
 
 BDEPEND="
 	dev-embedded/fxsdk
@@ -57,8 +62,8 @@ src_configure() {
 	local GINT_CMAKE_OPTIONS=(
 		-DCMAKE_INSTALL_PREFIX="${EPREFIX}/usr/${CHOST}"
 		-DGINT_KMALLOC_DEBUG="$(usex kmalloc-debug)"
+		-DGINT_NO_OS_STACK="$(usex !os-stack)"
 		-DGINT_STATIC_GRAY="$(usex static-gray)"
-		-DGINT_USER_VRAM="$(usex user-vram)"
 	)
 	set -- fxsdk build -c "${GINT_CMAKE_OPTIONS[@]}"
 	echo "${@}" >&2

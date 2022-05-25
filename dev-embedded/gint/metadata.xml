@@ -9,11 +9,15 @@
 		<flag name="kmalloc-debug">
 			Enable debug functions for kmalloc
 		</flag>
+		<flag name="os-stack" restrict="&gt;=dev-embedded/gint-2.8.0">
+			Use a chunk of the OS stack as heap, instead of the user stack
+			(Effective for fx-CG50 only)
+		</flag>
 		<flag name="static-gray">
 			Use static memory instead of malloc() for the gray engine's VRAMs
 			(Effective for fx-9860G only)
 		</flag>
-		<flag name="user-vram">
+		<flag name="user-vram" restrict="&lt;dev-embedded/gint-2.8.0">
 			Put all VRAMs into the user stack (takes up 350k/512k)
 			(Effective for fx-CG50 only)
 		</flag>
