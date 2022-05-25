@@ -83,8 +83,8 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "To build projects created using this SDK, it might"
-	optfeature_header "be necessary to have these packages installed:"
+	optfeature_header \
+	"To build projects created using this SDK, these packages might be needed:"
 	optfeature "a library and kernel for add-ins" dev-embedded/gint
 	optfeature "installing projects to fx-9860G" dev-embedded/p7utils
 }
