@@ -36,7 +36,7 @@ src_configure() {
 		# There is only one small udev rule file, which
 		# can and should be unconditionally installed
 		--udev
-		--udevrulesdir="$(get_udevdir)/rules.d"
+		--udevrulesdir="${EPREFIX}$(get_udevdir)/rules.d"
 
 		# This project's configure script recognizes '--target'
 		# instead of '--host' for the configuration name of CHOST
