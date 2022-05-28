@@ -33,18 +33,26 @@
 		<flag name="debug">
 			Enable the internal debugger of this program
 		</flag>
+		<flag name="ffmpeg">
+			Enable MPEG.TS + H.264 video capture format support
+			via <pkg>media-video/ffmpeg</pkg>
+		</flag>
 		<flag name="fluidsynth">
-			Enable FluidSynth soundfront for MIDI
+			Enable FluidSynth to be used as the MIDI synthesizer
 		</flag>
 		<flag name="freetype">
-			Enable TrueType font (TTF) output and printing support via
-			<pkg>media-libs/freetype</pkg>
+			Enable TrueType font (TTF) output and printing support
+			via <pkg>media-libs/freetype</pkg>
+		</flag>
+		<flag name="opengl">
+			Enable OpenGL as a video system to use for output
 		</flag>
 		<flag name="png">
-			Enable screenshot support via <pkg>media-libs/libpng</pkg>
+			Enable screenshot and video capture support
+			via <pkg>media-libs/libpng</pkg>
 		</flag>
 		<flag name="slirp">
-			Enable the SLIRP back-end for networking
+			Enable the SLIRP back-end for network adapter emulation
 		</flag>
 	</use>
 </pkgmetadata>
