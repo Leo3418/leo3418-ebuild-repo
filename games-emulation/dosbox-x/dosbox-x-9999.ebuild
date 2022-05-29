@@ -63,6 +63,16 @@ DEPEND="
 	${RDEPEND}
 "
 
+pkg_pretend() {
+	if use ffmpeg && use !png; then
+		ewarn "Setting the 'ffmpeg' USE flag when the 'png' USE flag is"
+		ewarn "unset does not have any effect.  Unsetting the 'png' USE"
+		ewarn "flag disables the video capture feature, so additional"
+		ewarn "video capture formats enabled by the 'ffmpeg' USE flag"
+		ewarn "will end up being unused."
+	fi
+}
+
 src_prepare() {
 	default
 	eautoreconf
@@ -94,4 +104,40 @@ src_configure() {
 	)
 
 	econf "${myconf[@]}"
+}
+
+pkg_preinst() {
+	xdg_pkg_preinst
+
+	# These 'has_version' calls test if any USE flags are newly enabled.
+	# They are to extract information about any existing copy of this
+	# package installed on the system, which is why they should be
+	# called before the new copy of this package just built is merged.
+	use fluidsynth && ! has_version "${CATEGORY}/${PN}[fluidsynth]" &&
+		PRINT_NOTES_FOR_FLUIDSYNTH=1
+}
+
+pkg_postinst() {
+	xdg_pkg_postinst
+
+	if [[ "${PRINT_NOTES_FOR_FLUIDSYNTH}" ]]; then
+		elog "To use FluidSynth as the MIDI device for DOSBox-X, a soundfont"
+		elog "is required.  If no existing soundfont is available, a new one"
+		elog "can be installed and configured for DOSBox-X very easily:"
+		elog
+		elog "1. Install the following package:"
+		elog "     media-sound/fluid-soundfont"
+		elog "2. Add the following lines to DOSBox-X's configuration file:"
+		elog "     [midi]"
+		elog "     mididevice=fluidsynth"
+		elog
+		elog "Usually, there is no need to explicitly specify the soundfont"
+		elog "file's path because the package mentioned in step 1 installs"
+		elog "soundfont files to a standard location, allowing them to be"
+		elog "detected and selected automatically."
+		elog
+		elog "For advanced FluidSynth configuration, please consult:"
+		elog "  https://dosbox-x.com/wiki/Guide%3ASetting-up-MIDI-in-DOSBox%E2%80%90X#_fluidsynth"
+		elog
+	fi
 }
