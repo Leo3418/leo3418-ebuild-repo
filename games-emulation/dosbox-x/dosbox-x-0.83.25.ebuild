@@ -121,6 +121,9 @@ pkg_postinst() {
 	xdg_pkg_postinst
 
 	if [[ "${PRINT_NOTES_FOR_FLUIDSYNTH}" ]]; then
+		elog
+		elog "Note on FluidSynth"
+		elog
 		elog "To use FluidSynth as the MIDI device for DOSBox-X, a soundfont"
 		elog "is required.  If no existing soundfont is available, a new one"
 		elog "can be installed and configured for DOSBox-X very easily:"
@@ -138,6 +141,5 @@ pkg_postinst() {
 		elog
 		elog "For advanced FluidSynth configuration, please consult:"
 		elog "  https://dosbox-x.com/wiki/Guide%3ASetting-up-MIDI-in-DOSBox%E2%80%90X#_fluidsynth"
-		elog
 	fi
 }
