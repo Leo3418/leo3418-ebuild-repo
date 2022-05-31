@@ -41,7 +41,7 @@ BDEPEND="
 # unconditionally require media-libs/libsdl2[X] for better user experience.
 RDEPEND="
 	media-libs/alsa-lib
-	media-libs/libsdl2[X,alsa,threads,video]
+	media-libs/libsdl2[X,opengl?,sound,threads,video]
 	media-libs/sdl2-net
 	net-libs/libpcap
 	sys-libs/zlib
