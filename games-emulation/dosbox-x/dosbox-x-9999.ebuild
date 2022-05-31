@@ -109,16 +109,36 @@ src_configure() {
 pkg_preinst() {
 	xdg_pkg_preinst
 
-	# These 'has_version' calls test if any USE flags are newly enabled.
-	# They are to extract information about any existing copy of this
-	# package installed on the system, which is why they should be
-	# called before the new copy of this package just built is merged.
-	use fluidsynth && ! has_version "${CATEGORY}/${PN}[fluidsynth]" &&
-		PRINT_NOTES_FOR_FLUIDSYNTH=1
+	# Returns whether or not the USE flag specified with the first positional
+	# argument is newly enabled for this installation of the package.
+	newuse() {
+		local flag="${1}"
+
+		# The 'has_version' call tests if any USE flags are newly enabled.
+		# It is to extract information about any existing copy of this
+		# package installed on the system, which is why it should be made
+		# before the new copy of this package just built is merged.
+		use "${flag}" && ! has_version "${CATEGORY}/${PN}[${flag}]"
+	}
+
+	newuse debug && PRINT_NOTES_FOR_DEBUGGER=1
+	newuse fluidsynth && PRINT_NOTES_FOR_FLUIDSYNTH=1
 }
 
 pkg_postinst() {
 	xdg_pkg_postinst
+
+	if [[ "${PRINT_NOTES_FOR_DEBUGGER}" ]]; then
+		elog
+		elog "Note on the Debugger"
+		elog
+		elog "The debugger can only be started when DOSBox-X is launched"
+		elog "from a terminal.  Otherwise, the \"Start DOSBox-X Debugger\""
+		elog "option in the \"Debug\" drop-down menu would be unavailable."
+		elog
+		elog "For more information about the debugger, please consult:"
+		elog "  ${EPREFIX}/usr/share/doc/${PF}/README.debugger*"
+	fi
 
 	if [[ "${PRINT_NOTES_FOR_FLUIDSYNTH}" ]]; then
 		elog
