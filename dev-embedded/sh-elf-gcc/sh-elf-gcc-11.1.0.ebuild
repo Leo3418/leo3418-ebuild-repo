@@ -6,7 +6,7 @@ EAPI=8
 MY_PN="gcc"
 MY_P="${MY_PN}-${PV}"
 
-inherit flag-o-matic gnuconfig libtool
+inherit edo flag-o-matic gnuconfig libtool
 
 DESCRIPTION="Cross-compiling GCC targeted at SH3/SH4 processors on CASIO graphing calculators"
 HOMEPAGE="
@@ -66,6 +66,11 @@ pkg_setup() {
 	# we dont want to use the installed compiler's specs to build gcc
 	unset GCC_SPECS
 	unset LANGUAGES #265283
+
+	# See https://www.gnu.org/software/make/manual/html_node/Parallel-Output.html
+	# Avoid really confusing logs from subconfigure spam, makes logs far
+	# more legible.
+	MAKEOPTS="--output-sync=line ${MAKEOPTS}"
 }
 
 src_prepare() {
@@ -177,8 +182,9 @@ src_configure() {
 	echo
 
 	addwrite /dev/zero
-	echo "${S}/configure" "${confgcc[@]}"
-	bash "${S}/configure" "${confgcc[@]}" || die "configure failed"
+	local gcc_shell="${BROOT}/bin/bash"
+	CONFIG_SHELL="${gcc_shell}" \
+		edo "${gcc_shell}" "${S}/configure" "${confgcc[@]}"
 }
 
 src_compile() {
@@ -191,7 +197,7 @@ src_compile() {
 
 src_install() {
 	cd "${MY_BUILDDIR}" || die "Failed to change to build directory"
-	emake -j1 DESTDIR="${D}" install-gcc install-target-libgcc
+	emake DESTDIR="${D}" install-gcc install-target-libgcc
 
 	local CTARGET_gcc_PV="${D}${BINPATH}/${CTARGET}-gcc-${PV}"
 	if [[ -f "${CTARGET_gcc_PV}" ]]; then
