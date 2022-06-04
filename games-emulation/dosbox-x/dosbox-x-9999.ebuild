@@ -92,6 +92,16 @@ src_configure() {
 		# should be avoided on Gentoo, so SDL 2 is more preferable.
 		--enable-sdl2
 
+		# Explicitly enable ALSA MIDI support, same as default.  As of
+		# v0.84.0, even when it is disabled, media-libs/alsa-lib will
+		# still be automagically linked if it is present in the build
+		# environment (presumably for other components of this package),
+		# so the dependency cannot be made optional by disabling this
+		# option.  Plus, disabling this option has no observable effect
+		# on build time, build size, or the program's functionality, as
+		# 'mididevice=alsa' still works with '--disable-alsa-midi'.
+		--enable-alsa-midi
+
 		$(use_enable debug '' heavy)
 
 		$(use_enable X x11)
