@@ -28,6 +28,7 @@ IUSE="X debug ffmpeg fluidsynth freetype opengl png slirp"
 
 BDEPEND="
 	dev-lang/nasm
+	sys-libs/libcap
 "
 
 # Unconditionally pulling in automagically-enabled optional dependencies:
@@ -75,6 +76,25 @@ pkg_pretend() {
 
 src_prepare() {
 	default
+
+	# Patch instances of command lines like the following in Makefile.am:
+	#   -test -x /usr/sbin/setcap && setcap cap_net_raw=ep $(DESTDIR)$(bindir)/dosbox-x
+	#
+	# 'cap_net_raw' is required for using the PCAP networking back-end.  Even
+	# though 'test' returning a negative result will not cause Make to emit an
+	# error thanks to the '-' in front of these lines, passing the test and
+	# thus running 'setcap' would still improve the user experience by ensuring
+	# that the capabilities needed by the PCAP back-end are set out-of-box.
+	#
+	# Unfortunately, the test respects neither BROOT (meaning that it might not
+	# work as intended on Gentoo Prefix) nor the fact that some distributions,
+	# including Gentoo, may still have split /sbin and /usr/sbin and install
+	# the 'setcap' program to /sbin.  As long as the package providing
+	# 'setcap', which is sys-libs/libcap, is declared in BDEPEND of this
+	# ebuild, testing if 'setcap' exists and is executable is redundant.
+	sed -i -e 's|-test -x /usr/sbin/setcap && ||' Makefile.am ||
+		die "Failed to remove test for setcap in Makefile.am"
+
 	eautoreconf
 }
 
