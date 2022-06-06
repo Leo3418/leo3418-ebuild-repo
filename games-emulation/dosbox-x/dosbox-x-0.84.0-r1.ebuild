@@ -77,23 +77,28 @@ pkg_pretend() {
 src_prepare() {
 	default
 
-	# Patch instances of command lines like the following in Makefile.am:
+	# Patch command lines like the following in Makefile.am:
 	#   -test -x /usr/sbin/setcap && setcap cap_net_raw=ep $(DESTDIR)$(bindir)/dosbox-x
 	#
-	# 'cap_net_raw' is required for using the PCAP networking back-end.  Even
-	# though 'test' returning a negative result will not cause Make to emit an
-	# error thanks to the '-' in front of these lines, passing the test and
-	# thus running 'setcap' would still improve the user experience by ensuring
-	# that the capabilities needed by the PCAP back-end are set out-of-box.
+	# The purpose of these commands is, if the 'setcap' program exists and is
+	# executable, then invoke it to set capabilities required by the PCAP
+	# networking back-end for better out-of-box user experience; otherwise,
+	# ignore unsatisfied preconditions or 'setcap' errors since they are not
+	# critical, which is achieved by having a '-' in front of each line.
 	#
-	# Unfortunately, the test respects neither BROOT (meaning that it might not
-	# work as intended on Gentoo Prefix) nor the fact that some distributions,
+	# Unfortunately, 'test -x /usr/sbin/setcap' does not always work as
+	# expected on Gentoo because it ignores the fact that some distributions,
 	# including Gentoo, may still have split /sbin and /usr/sbin and install
-	# the 'setcap' program to /sbin.  As long as the package providing
-	# 'setcap', which is sys-libs/libcap, is declared in BDEPEND of this
-	# ebuild, testing if 'setcap' exists and is executable is redundant.
-	sed -i -e 's|-test -x /usr/sbin/setcap && ||' Makefile.am ||
-		die "Failed to remove test for setcap in Makefile.am"
+	# 'setcap' to /sbin.
+	#
+	# As long as sys-libs/libcap is declared in BDEPEND of this ebuild, the
+	# availability of 'setcap' can be assumed, rendering the test redundant.
+	# However, successfully setting capabilities via 'setcap' usually requires
+	# the root account (which is not guaranteed on Prefix) and xattr support
+	# for the file system being used, so the '-' in front of each line is
+	# preserved to tolerate the expected 'setcap' failures.
+	sed -i -e 's|test -x /usr/sbin/setcap && ||' Makefile.am ||
+		die "Failed to remove check for setcap in Makefile.am"
 
 	eautoreconf
 }
