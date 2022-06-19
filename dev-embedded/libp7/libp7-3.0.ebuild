@@ -66,5 +66,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	udev_reload
+	[[ -z "${REPLACED_BY_VERSION}" ]] && udev_reload
 }
