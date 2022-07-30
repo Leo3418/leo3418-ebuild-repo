@@ -17,10 +17,6 @@
 			Use static memory instead of malloc() for the gray engine's VRAMs
 			(Effective for fx-9860G only)
 		</flag>
-		<flag name="user-vram" restrict="&lt;dev-embedded/gint-2.8.0">
-			Put all VRAMs into the user stack (takes up 350k/512k)
-			(Effective for fx-CG50 only)
-		</flag>
 	</use>
 	<upstream>
 		<bugs-to>https://gitea.planet-casio.com/Lephenixnoir/gint/issues</bugs-to>
