@@ -19,7 +19,7 @@ fi
 DESCRIPTION="Development tools for add-ins on CASIO fx-9860G and fx-CG50 graphing calculators"
 HOMEPAGE="https://gitea.planet-casio.com/Lephenixnoir/fxsdk"
 
-LICENSE="Lephenixnoir"
+LICENSE="MIT"
 SLOT="0"
 
 IUSE="sdl udisks"
@@ -48,7 +48,19 @@ RDEPEND="
 	dev-python/pillow[${PYTHON_USEDEP}]
 "
 
+# Use the same CTARGET as dev-util/sh-elf-binutils
+CTARGET="sh3eb-fx-elf"
+
 src_prepare() {
+	# ebuilds for the sh-elf toolchain try to follow other common Gentoo
+	# cross-compiling toolchain packages with regards to file installation
+	# locations, which differ from the SDK's default search paths
+	sed -i \
+		-e "s|\(/share/fxsdk/sysroot\)/sh3eb-elf|\1/${CTARGET}|g" \
+		-e 's|/share/fxsdk/sysroot||g' \
+		fxsdk/fxsdk.sh ||
+		die "Failed to adjust sh-elf toolchain paths"
+
 	# Fix up the FXSDK_COMPILER_INSTALL path in CMake module files, so the
 	# SDK will no longer install packages to the GCC installation path
 	sed -i \
