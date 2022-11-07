@@ -9,7 +9,10 @@ if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://gitea.planet-casio.com/Lephenixnoir/OpenLibm.git"
 else
-	SRC_URI="https://gitea.planet-casio.com/Lephenixnoir/OpenLibm/archive/${PV}-sh3eb.tar.gz -> ${P}.tar.gz"
+	MY_PV="$(ver_cut 1-3)-sh3eb"
+	[[ "$(ver_cut 4)" == p ]] && [[ -n "$(ver_cut 5)" ]] &&
+		MY_PV+="-$(ver_cut 5)"
+	SRC_URI="https://gitea.planet-casio.com/Lephenixnoir/OpenLibm/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/openlibm"
 	KEYWORDS="~amd64"
 fi
@@ -44,6 +47,6 @@ src_test() {
 
 src_install() {
 	emake DESTDIR="${D}" prefix="${EPREFIX}/usr/${CHOST}" \
-		install-static install-headers
+		install-static-superh install-headers-superh
 	einstalldocs
 }
