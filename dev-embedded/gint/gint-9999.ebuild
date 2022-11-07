@@ -29,34 +29,14 @@ SLOT="0"
 IUSE="kmalloc-debug +os-stack static-gray"
 
 BDEPEND="
-	dev-embedded/fxsdk
+	>=dev-embedded/fxsdk-2.9.0
+	>=dev-embedded/sh-elf-binutils-2.39
 "
 
 DEPEND="
 	dev-embedded/fxlibc
+	>=dev-embedded/sh3eb-openlibm-0.7.5_p2
 "
-
-src_prepare() {
-	# Change installation destination of libraries and linker scripts
-	# from ${FXSDK_COMPILER_INSTALL} to ${FXSDK_COMPILER_INSTALL}/lib
-	sed -i \
-		-e '/TARGETS/s/\(${FXSDK_COMPILER_INSTALL}\)/\1\/lib/g' \
-		-e '/${LINKER_SCRIPT}/{n;s/\(${FXSDK_COMPILER_INSTALL}\)/\1\/lib/g}' \
-		CMakeLists.txt ||
-		die "Failed to modify installation destination paths"
-
-	# Fix up paths to this package's headers in CMake module files, so
-	# projects created by fxSDK can find them.  This is necessary because
-	# the headers are not being installed to the GCC installation path, and
-	# GCC's '-print-file-name' option does not return the absolute paths to
-	# these headers for this reason.
-	sed -i \
-		-e "s|\(\${CMAKE_C_COMPILER}\) -print-file-name=include\(.*\)|sh -c \"echo \\\\\"${EPREFIX}/usr/\$(\1 -dumpmachine)/include\2\\\\\"\"|g" \
-		cmake/FindGint.cmake ||
-		die "Failed to modify CMake module files"
-
-	default
-}
 
 src_configure() {
 	local GINT_CMAKE_OPTIONS=(
