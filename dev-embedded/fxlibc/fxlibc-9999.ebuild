@@ -25,24 +25,21 @@ LICENSE="CC0-1.0 BSD MIT"
 SLOT="0"
 
 DEPEND="
-	dev-embedded/sh3eb-openlibm
+	>=dev-embedded/sh3eb-openlibm-0.7.5_p2
 "
 
 src_configure() {
-	local SYSROOT="${ESYSROOT}/usr/${CHOST}"
-	append-cppflags -I"${SYSROOT}/include/openlibm"
-
 	local mycmakeargs=(
 		-DCMAKE_INSTALL_PREFIX="${EPREFIX}/usr/${CHOST}"
 	)
 
 	# Adapted from https://gitea.planet-casio.com/Vhex-Kernel-Core/fxlibc/src/branch/master/giteapc.make
-	append-flags -nostdlib
 	mycmakeargs+=(
 		-DFXLIBC_TARGET=gint
 	)
 
 	# Adapted from https://gitea.planet-casio.com/Vhex-Kernel-Core/fxlibc/src/branch/master/cmake/toolchain-sh.cmake
+	append-flags -nostdlib
 	local KERNEL="Generic"
 
 	cmake_src_configure
