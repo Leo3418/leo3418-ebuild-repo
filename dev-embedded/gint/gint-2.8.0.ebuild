@@ -29,8 +29,10 @@ SLOT="0"
 IUSE="kmalloc-debug +os-stack static-gray"
 
 BDEPEND="
-	dev-embedded/fxsdk
-	dev-util/cmake
+	|| (
+		( >=dev-embedded/fxsdk-2.9.1 dev-util/cmake )
+		( <dev-embedded/fxsdk-2.9.1 <dev-util/cmake-3.24.0 )
+	)
 "
 
 DEPEND="
