@@ -30,6 +30,7 @@ IUSE="kmalloc-debug +os-stack static-gray"
 
 BDEPEND="
 	>=dev-embedded/fxsdk-2.9.0
+	dev-util/cmake
 	>=dev-embedded/sh-elf-binutils-2.39
 "
 
