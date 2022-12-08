@@ -23,7 +23,7 @@ IUSE="+nls"
 
 BDEPEND="
 	sys-devel/flex
-	virtual/yacc
+	app-alternatives/yacc
 	nls? ( sys-devel/gettext )
 "
 
