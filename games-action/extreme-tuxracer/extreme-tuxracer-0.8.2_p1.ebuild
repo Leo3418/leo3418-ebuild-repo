@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit autotools desktop xdg-utils
+inherit autotools desktop xdg
 
 MY_PV="${PV%_p*}"
 MY_P="${PN}-${MY_PV}"
@@ -22,7 +22,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="vanilla"
 
 RDEPEND="
-	media-libs/libsfml:0=
+	>=media-libs/libsfml-2.4:0=
 	virtual/glu
 	virtual/opengl
 "
@@ -91,15 +91,7 @@ src_compile() {
 src_install() {
 	default
 	dodoc doc/{code,courses_events,guide,score_algorithm}
-	doicon -s 48 resources/etr.png
+	doicon -s 64 resources/etr.png
 	doicon -s scalable resources/etr.svg
 	domenu resources/etr.desktop
-}
-
-pkg_postinst() {
-	xdg_icon_cache_update
-}
-
-pkg_postrm() {
-	xdg_icon_cache_update
 }
