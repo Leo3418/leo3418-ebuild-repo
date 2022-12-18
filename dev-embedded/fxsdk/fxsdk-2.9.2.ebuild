@@ -48,7 +48,7 @@ RDEPEND="
 	dev-python/pillow[${PYTHON_USEDEP}]
 "
 
-# Use the same CTARGET as dev-util/sh-elf-binutils
+# Use the same CTARGET as dev-embedded/sh-elf-binutils
 CTARGET="sh3eb-fx-elf"
 
 src_prepare() {
