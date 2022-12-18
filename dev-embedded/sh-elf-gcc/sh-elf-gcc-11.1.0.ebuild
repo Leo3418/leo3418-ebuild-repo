@@ -58,7 +58,7 @@ DEPEND="
 S="${WORKDIR}/${MY_P}"
 MY_BUILDDIR="${WORKDIR}/build"
 
-# Use the same CTARGET as dev-util/sh-elf-binutils
+# Use the same CTARGET as dev-embedded/sh-elf-binutils
 CTARGET="sh3eb-fx-elf"
 PROGRAM_PREFIX="${PN%"${MY_PN}"}"
 
