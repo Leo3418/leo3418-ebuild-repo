@@ -28,6 +28,11 @@ DEPEND="
 	dev-embedded/sh3eb-openlibm
 "
 
+DOCS=(
+	README.md
+	STATUS
+)
+
 src_configure() {
 	local SYSROOT="${ESYSROOT}/usr/${CHOST}"
 	append-cppflags -I"${SYSROOT}/include/openlibm"

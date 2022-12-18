@@ -28,6 +28,11 @@ DEPEND="
 	>=dev-embedded/sh3eb-openlibm-0.7.5_p2
 "
 
+DOCS=(
+	README.md
+	STATUS
+)
+
 src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_INSTALL_PREFIX="${EPREFIX}/usr/${CHOST}"
