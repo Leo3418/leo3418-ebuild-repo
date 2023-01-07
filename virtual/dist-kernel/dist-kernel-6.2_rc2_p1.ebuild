@@ -14,4 +14,5 @@ KEYWORDS="~arm64"
 RDEPEND="
 	|| (
 		~sys-kernel/asahi-kernel-${PV}
+		~sys-kernel/asahi-edge-kernel-${PV}
 	)"
