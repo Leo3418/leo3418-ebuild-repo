@@ -1,0 +1,7 @@
+# Copyright 1999-2023 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+# Yuan Liao <liaoyuan@gmail.com> (2023-01-07)
+# The default Asahi Linux kernel config does not support booting without
+# an initramfs because the disk controller driver is built as a module.
+sys-kernel/asahi-kernel initramfs

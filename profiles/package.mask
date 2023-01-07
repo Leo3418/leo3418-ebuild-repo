@@ -30,3 +30,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Yuan Liao <liaoyuan@gmail.com> (2023-01-07)
+# Due to personal reasons, I may cease to have access to devices
+# necessary for testing this kernel by or after May 2023, which
+# means that this package will likely be no longer maintained
+# since then.  Please feel free to unmask if you acknowledge this.
+sys-kernel/asahi-kernel
