@@ -5,3 +5,4 @@
 # The default Asahi Linux kernel config does not support booting without
 # an initramfs because the disk controller driver is built as a module.
 sys-kernel/asahi-kernel initramfs
+sys-kernel/asahi-edge-kernel initramfs

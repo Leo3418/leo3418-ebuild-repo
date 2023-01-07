@@ -37,5 +37,6 @@
 # means that this package will likely be no longer maintained
 # since then.  Please feel free to unmask if you acknowledge this.
 sys-kernel/asahi-kernel
+sys-kernel/asahi-edge-kernel
 =virtual/dist-kernel-6.1_p*
 =virtual/dist-kernel-6.2_rc*
