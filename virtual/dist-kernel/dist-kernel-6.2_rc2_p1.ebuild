@@ -11,4 +11,7 @@ LICENSE=""
 SLOT="0/${PV}"
 KEYWORDS="~arm64"
 
-RDEPEND=""
+RDEPEND="
+	|| (
+		~sys-kernel/asahi-kernel-${PV}
+	)"
