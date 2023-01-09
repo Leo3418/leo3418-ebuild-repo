@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kernel-build
+inherit kernel-build toolchain-funcs
 
 # https://github.com/AsahiLinux/PKGBUILDs/blob/main/linux-asahi/config
 PKGBUILD_CONFIG_COMMIT="da67cf02622899775c233f52e441fc8127f51d99"
@@ -76,4 +76,10 @@ src_prepare() {
 	use !debug && merge_configs+=( "${dist_conf_path}/no-debug.config" )
 
 	kernel-build_merge_configs "${merge_configs[@]}"
+}
+
+src_install() {
+	# Override DTBs installation path for sys-apps/asahi-scripts::asahi
+	export INSTALL_DTBS_PATH="${ED}/usr/src/linux-${PV}${KV_LOCALVERSION}/arch/$(tc-arch-kernel)/boot/dts"
+	kernel-build_src_install
 }
