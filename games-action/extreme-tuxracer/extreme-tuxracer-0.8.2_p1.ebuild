@@ -10,7 +10,7 @@ MY_P="${PN}-${MY_PV}"
 TUXRACER_DATA_P="tuxracer-data-0.61"
 
 DESCRIPTION="High speed arctic racing game based on Tux Racer"
-HOMEPAGE="https://extremetuxracer.sourceforge.io/"
+HOMEPAGE="https://sourceforge.net/projects/extremetuxracer/"
 SRC_URI="
 	mirror://sourceforge/extremetuxracer/etr-${MY_PV}.tar.xz -> ${MY_P}.tar.xz
 	!vanilla? ( mirror://sourceforge/tuxracer/${TUXRACER_DATA_P}.tar.gz )
