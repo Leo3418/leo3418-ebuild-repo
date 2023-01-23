@@ -19,7 +19,7 @@ if [[ ! "${_SH_ELF_ECLASS}" ]]; then
 
 case ${EAPI:-0} in
 	8) ;;
-	*) die "${ECLASS}: EAPI ${EAPI} unsupported."
+	*) die "${ECLASS}: eclass used with unsupported EAPI: ${EAPI}"
 esac
 
 inherit flag-o-matic
