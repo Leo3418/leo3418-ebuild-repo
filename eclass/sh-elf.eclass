@@ -1,4 +1,4 @@
-# Copyright 2022 Gentoo Authors
+# Copyright 2022-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: sh-elf.eclass
@@ -23,8 +23,6 @@ case ${EAPI:-0} in
 esac
 
 inherit flag-o-matic
-
-EXPORT_FUNCTIONS pkg_setup
 
 BDEPEND="
 	dev-embedded/sh-elf-binutils
@@ -54,3 +52,5 @@ sh-elf_pkg_setup() {
 
 _SH_ELF_ECLASS=1
 fi
+
+EXPORT_FUNCTIONS pkg_setup
