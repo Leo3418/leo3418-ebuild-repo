@@ -9,6 +9,8 @@ inherit kernel-build toolchain-funcs
 PKGBUILD_CONFIG_COMMIT="fa0fbb251bbe98a2d7977b2854b07685b0acd18c"
 PKGBUILD_CONFIG_VER="6.2.0-rc2"
 PKGBUILD_CONFIG_FILE_NAME="linux-asahi.config.${PKGBUILD_CONFIG_VER}"
+# https://github.com/AsahiLinux/PKGBUILDs/blob/main/linux-asahi/config.edge
+PKGBUILD_EDGE_CONFIG_FILE_NAME="${PKGBUILD_CONFIG_FILE_NAME}-edge"
 
 GENTOO_CONFIG_VER="g5"
 
@@ -17,7 +19,6 @@ GENTOO_CONFIG_VER="g5"
 MY_PV="${PV/_rc/-rc}"
 MY_PV="${MY_PV/_p/-}"
 
-DESCRIPTION="Asahi Linux kernel for Apple silicon-based Macs built from sources"
 HOMEPAGE="https://asahilinux.org/"
 SRC_URI="
 	https://github.com/AsahiLinux/linux/archive/refs/tags/asahi-${MY_PV}.tar.gz
@@ -27,6 +28,16 @@ SRC_URI="
 		-> gentoo-kernel-config-${GENTOO_CONFIG_VER}.tar.gz
 "
 S="${WORKDIR}/linux-asahi-${MY_PV}"
+
+if [[ ${PN} == asahi-edge-kernel ]]; then
+	DESCRIPTION="Asahi Linux testing kernel for Apple silicon-based Macs built from sources"
+	SRC_URI+="
+		https://raw.githubusercontent.com/AsahiLinux/PKGBUILDs/${PKGBUILD_CONFIG_COMMIT}/linux-asahi/config.edge
+			-> ${PKGBUILD_EDGE_CONFIG_FILE_NAME}
+	"
+else
+	DESCRIPTION="Asahi Linux kernel for Apple silicon-based Macs built from sources"
+fi
 
 LICENSE="GPL-2"
 KEYWORDS="~arm64"
@@ -63,14 +74,19 @@ src_prepare() {
 			die "Failed to write local version preset"
 	fi
 
-	local myversion="-dist"
+	local myversion=""
+	[[ ${PN} == asahi-edge-kernel ]] && myversion+="-edge"
+	myversion+="-dist"
 	local ver_conf_path="${T}/version.config"
 	echo "CONFIG_LOCALVERSION=\"${myversion}\"" > "${ver_conf_path}" ||
 		die "Failed to write local version config"
 
-	local merge_configs=(
-		"${ver_conf_path}"
-	)
+	local merge_configs=()
+	if [[ ${PN} == asahi-edge-kernel ]]; then
+		local edge_conf_path="${DISTDIR}/${PKGBUILD_EDGE_CONFIG_FILE_NAME}"
+		merge_configs+=( "${edge_conf_path}" )
+	fi
+	merge_configs+=( "${ver_conf_path}" )
 
 	local dist_conf_path="${WORKDIR}/gentoo-kernel-config-${GENTOO_CONFIG_VER}"
 	use !debug && merge_configs+=( "${dist_conf_path}/no-debug.config" )
