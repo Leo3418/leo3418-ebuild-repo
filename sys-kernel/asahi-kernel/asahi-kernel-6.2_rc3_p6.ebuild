@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kernel-build toolchain-funcs
+inherit kernel-build savedconfig toolchain-funcs
 
 # https://github.com/AsahiLinux/PKGBUILDs/blob/main/linux-asahi/config
 PKGBUILD_CONFIG_COMMIT="fa0fbb251bbe98a2d7977b2854b07685b0acd18c"
@@ -98,4 +98,77 @@ src_install() {
 	# Override DTBs installation path for sys-apps/asahi-scripts::asahi
 	export INSTALL_DTBS_PATH="${ED}/usr/src/linux-${PV}${KV_LOCALVERSION}/arch/$(tc-arch-kernel)/boot/dts"
 	kernel-build_src_install
+}
+
+pkg_postinst() {
+	asahi-kernel_pkg_postinst
+	savedconfig_pkg_postinst
+}
+
+# Override kernel-install_pkg_postinst to call asahi-kernel_update_symlink for
+# updating the kernel source symlink
+asahi-kernel_pkg_postinst() {
+	local dir_ver=${PV}${KV_LOCALVERSION}
+	asahi-kernel_update_symlink "${EROOT}/usr/src/linux" "${dir_ver}"
+
+	if [[ -z ${ROOT} ]]; then
+		kernel-install_install_all "${dir_ver}"
+	fi
+}
+
+# Override kernel-install_update_symlink to use asahi-kernel_can_update_symlink
+# for testing if the kernel source symlink should be updated
+asahi-kernel_update_symlink() {
+	[[ ${#} -eq 2 ]] || die "${FUNCNAME}: invalid arguments"
+	local target=${1}
+	local version=${2}
+
+	if asahi-kernel_can_update_symlink "${target}"; then
+		ebegin "Updating ${target} symlink"
+		ln -f -n -s "${target##*/}-${version}" "${target}"
+		eend ${?}
+	else
+		elog "${target} points at another kernel, leaving it as-is."
+		elog "Please use 'eselect kernel' to update it when desired."
+	fi
+}
+
+# Override kernel-install_can_update_symlink
+# to recognize '_rc' and '_p' in ${symlink_ver}
+asahi-kernel_can_update_symlink() {
+	[[ ${#} -eq 1 ]] || die "${FUNCNAME}: invalid arguments"
+	local target=${1}
+
+	# if the symlink does not exist or is broken, update
+	[[ ! -e ${target} ]] && return 0
+	# if the target does not seem to contain kernel sources
+	# (i.e. is probably a leftover directory), update
+	[[ ! -e ${target}/Makefile ]] && return 0
+
+	local symlink_target=$(readlink "${target}")
+	# the symlink target should start with the same basename as target
+	# (e.g. "linux-*")
+	[[ ${symlink_target} != ${target##*/}-* ]] && return 1
+
+	# try to establish the kernel version from symlink target
+	local symlink_ver=${symlink_target#${target##*/}-}
+	# strip KV_LOCALVERSION, we want to update the old kernels not using
+	# KV_LOCALVERSION suffix and the new kernels using it
+	symlink_ver=${symlink_ver%${KV_LOCALVERSION}}
+
+	# if ${symlink_ver} contains anything but numbers and expected
+	# suffixes ('_rc', '_p'), it's not our kernel, so leave it alone
+	local symlink_ver_copy=${symlink_ver}
+	symlink_ver_copy=${symlink_ver_copy/_rc/}
+	symlink_ver_copy=${symlink_ver_copy/_p/}
+	[[ -n ${symlink_ver_copy//[0-9.]/} ]] && return 1
+
+	local symlink_pkg=${CATEGORY}/${PN}-${symlink_ver}
+	# if the current target is either being replaced, or still
+	# installed (probably depclean candidate), update the symlink
+	has "${symlink_ver}" ${REPLACING_VERSIONS} && return 0
+	has_version -r "~${symlink_pkg}" && return 0
+
+	# otherwise it could be another kernel package, so leave it alone
+	return 1
 }
