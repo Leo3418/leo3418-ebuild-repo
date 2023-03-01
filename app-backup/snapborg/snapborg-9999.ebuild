@@ -12,7 +12,7 @@ if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/enzingerm/snapborg.git"
 else
-	if [[ "${PV}" == *_pre* ]] || [[ "${PV}" == *_p* ]]; then
+	if [[ "${PV}" == *_pre* || "${PV}" == *_p* ]]; then
 		GIT_COMMIT=""
 		[[ -n "${GIT_COMMIT}" ]] ||
 			die "GIT_COMMIT is not defined for snapshot ebuild"
