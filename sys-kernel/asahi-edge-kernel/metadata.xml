@@ -10,6 +10,8 @@
 		<remote-id type="github">AsahiLinux/linux</remote-id>
 	</upstream>
 	<use>
+		<flag name="gpu-driver">Build the GPU driver.</flag>
 		<flag name="initramfs">Build initramfs along with the kernel.</flag>
+		<flag name="zstd">Compress kernel modules with zstd.</flag>
 	</use>
 </pkgmetadata>
