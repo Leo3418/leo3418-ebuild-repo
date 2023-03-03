@@ -32,6 +32,7 @@ BDEPEND="
 
 DEPEND="
 	media-libs/libpng:0/16
+	sys-libs/ncurses:=
 	virtual/libusb:1
 	sdl? (
 		media-libs/libsdl2
