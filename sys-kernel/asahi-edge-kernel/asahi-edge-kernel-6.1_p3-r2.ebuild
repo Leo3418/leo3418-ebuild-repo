@@ -71,7 +71,7 @@ asahi-kernel_need_rust() {
 	in_iuse gpu-driver && use gpu-driver
 }
 
-pkg_pretend() {
+pkg_setup() {
 	[[ ${MERGE_TYPE} != binary ]] && asahi-kernel_need_rust &&
 		asahi-kernel_check_rust
 }
