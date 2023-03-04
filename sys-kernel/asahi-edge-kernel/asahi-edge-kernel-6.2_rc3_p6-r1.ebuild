@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kernel-build savedconfig toolchain-funcs
+inherit kernel-build python-any-r1 savedconfig toolchain-funcs
 
 # https://github.com/AsahiLinux/PKGBUILDs/blob/main/linux-asahi/config
 PKGBUILD_CONFIG_COMMIT="fa0fbb251bbe98a2d7977b2854b07685b0acd18c"
@@ -72,6 +72,7 @@ asahi-kernel_need_rust() {
 }
 
 pkg_setup() {
+	python-any-r1_pkg_setup
 	[[ ${MERGE_TYPE} != binary ]] && asahi-kernel_need_rust &&
 		asahi-kernel_check_rust
 }
