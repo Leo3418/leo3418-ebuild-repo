@@ -49,6 +49,7 @@ RDEPEND="
 
 src_prepare() {
 	default
+	# Do not install configuration files into the site-packages directory
 	sed -i -e '/^    data_files=\[/,/^    \],/d' setup.py ||
 		die "Failed to remove data files from setup.py"
 	distutils-r1_src_prepare
