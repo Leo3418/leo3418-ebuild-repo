@@ -40,3 +40,4 @@ sys-kernel/asahi-kernel
 sys-kernel/asahi-edge-kernel
 =virtual/dist-kernel-6.1_p*
 =virtual/dist-kernel-6.2_rc*
+=virtual/dist-kernel-6.2_p*
