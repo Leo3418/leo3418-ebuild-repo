@@ -32,15 +32,15 @@ S="${WORKDIR}/linux-asahi-${MY_PV}"
 LICENSE="GPL-2"
 KEYWORDS="~arm64"
 # The 'debug' USE flag is required by kernel-build_src_install
-IUSE="debug +zstd"
+IUSE="debug +mod-compress-zstd"
 
 BDEPEND="
 	debug? ( dev-util/pahole )
-	zstd? ( app-arch/zstd )
+	mod-compress-zstd? ( app-arch/zstd )
 "
 
 RDEPEND="
-	zstd? ( sys-apps/kmod[zstd] )
+	mod-compress-zstd? ( sys-apps/kmod[zstd] )
 "
 
 PDEPEND="
@@ -123,7 +123,7 @@ src_prepare() {
 	local dist_conf_path="${WORKDIR}/gentoo-kernel-config-${GENTOO_CONFIG_VER}"
 	use !debug && merge_configs+=( "${dist_conf_path}/no-debug.config" )
 
-	if use !zstd; then
+	if use !mod-compress-zstd; then
 		local mod_compress_conf_path="${T}/mod-compress.config"
 		cat > "${mod_compress_conf_path}" <<- _EOF_ || \
 			die "Failed to write module compression config"
