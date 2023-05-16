@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 ####################################################################
@@ -38,6 +38,4 @@
 # since then.  Please feel free to unmask if you acknowledge this.
 sys-kernel/asahi-kernel
 sys-kernel/asahi-edge-kernel
-=virtual/dist-kernel-6.1_p*
-=virtual/dist-kernel-6.2_rc*
 =virtual/dist-kernel-6.2_p*
