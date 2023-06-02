@@ -13,6 +13,9 @@
 		plus extra options to adapt this package for Gentoo and Portage.
 	</longdescription>
 	<use>
+		<flag name="cxx">
+			Build libstdc++
+		</flag>
 		<flag name="graphite">
 			Add support for the framework for loop optimizations
 			based on a polyhedral intermediate representation
