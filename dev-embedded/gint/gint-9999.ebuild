@@ -1,4 +1,4 @@
-# Copyright 2022 Gentoo Authors
+# Copyright 2022-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -26,7 +26,7 @@ SLOT="0"
 # Since 'no*' style USE flags should be avoided according to the devmanual,
 # this USE flag is devised to represent the negation of the CMake option
 # and is thus enabled by default accordingly.
-IUSE="kmalloc-debug +os-stack static-gray"
+IUSE="kmalloc-debug +os-stack static-gray usb-debug"
 
 BDEPEND="
 	>=dev-embedded/fxsdk-2.9.0
@@ -45,6 +45,7 @@ src_configure() {
 		-DGINT_KMALLOC_DEBUG="$(usex kmalloc-debug)"
 		-DGINT_NO_OS_STACK="$(usex !os-stack)"
 		-DGINT_STATIC_GRAY="$(usex static-gray)"
+		-DGINT_USB_DEBUG="$(usex usb-debug)"
 	)
 	set -- fxsdk build -c "${GINT_CMAKE_OPTIONS[@]}"
 	echo "${@}" >&2
