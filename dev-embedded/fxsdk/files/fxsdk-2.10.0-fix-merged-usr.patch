@@ -1,0 +1,35 @@
+From 632edbf926fed8891fcc8c295378eb531cfb7aa4 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 2 Jun 2023 11:25:49 -0700
+Subject: [PATCH] FindLibFxlink.cmake: Fix issue with /usr-merge when
+ FXSDK_PATH is unset
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ libfxlink/cmake/FindLibFxlink.cmake | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/libfxlink/cmake/FindLibFxlink.cmake b/libfxlink/cmake/FindLibFxlink.cmake
+index daf6ca2..ba64f63 100644
+--- a/libfxlink/cmake/FindLibFxlink.cmake
++++ b/libfxlink/cmake/FindLibFxlink.cmake
+@@ -1,8 +1,15 @@
+ # Locate the library file and includes
+ 
++# Avoid using /lib as a hint when FXSDK_PATH is unset in the environment,
++# which would cause issues on a /usr-merged system
++set(LIBFXLINK_HINTS "$ENV{HOME}/.local/lib")
++if(DEFINED ENV{FXSDK_PATH})
++  list(APPEND LIBFXLINK_HINTS "$ENV{FXSDK_PATH}/lib")
++endif()
++
+ find_library(
+   LIBFXLINK_PATH "fxlink"
+-  HINTS "$ENV{HOME}/.local/lib" "$ENV{FXSDK_PATH}/lib"
++  HINTS ${LIBFXLINK_HINTS}
+ )
+ if(LIBFXLINK_PATH STREQUAL "LIBFXLINK_PATH-NOTFOUND")
+   message(SEND_ERROR
+-- 
+2.39.3
+

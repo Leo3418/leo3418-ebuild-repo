@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{10..11} )
 inherit cmake optfeature python-r1
 
 if [[ "${PV}" == 9999 ]]; then
@@ -52,6 +52,11 @@ RDEPEND="
 # Use the same CTARGET as dev-embedded/sh-elf-binutils
 CTARGET="sh3eb-fx-elf"
 
+PATCHES=(
+	"${FILESDIR}/${PN}-2.10.0-build-shared-libfxlink.patch"
+	"${FILESDIR}/${PN}-2.10.0-fix-merged-usr.patch"
+)
+
 src_prepare() {
 	# ebuilds for the sh-elf toolchain try to follow other common Gentoo
 	# cross-compiling toolchain packages with regards to file installation
@@ -65,12 +70,12 @@ src_prepare() {
 	# Fix up the FXSDK_COMPILER_INSTALL path in CMake module files, so the
 	# SDK will no longer install packages to the GCC installation path
 	sed -i \
-		-e "s|\(\${CMAKE_C_COMPILER}\) --print-file-name=.|sh -c \"echo \\\\\"${EPREFIX}/usr/\$(\1 -dumpmachine)\\\\\"\"|g" \
+		-e "s|\(\${CMAKE_C_COMPILER}\) --print-file-name=\.|sh -c \"echo \\\\\"${EPREFIX}/usr/\$(\1 -dumpmachine)\\\\\"\"|g" \
 		fxsdk/cmake/{FX9860G,FXCG50}.cmake ||
 		die "Failed to modify CMake module files"
 
 	# Install CMake module files to the conventional path
-	sed -i -e 's|lib/cmake/fxsdk|share/cmake/Modules|g' \
+	sed -i -e 's|lib/cmake\(/fxsdk\)\?|share/cmake/Modules|g' \
 		CMakeLists.txt fxsdk/fxsdk.sh ||
 		die "Failed to modify installation destination of CMake module files"
 

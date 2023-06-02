@@ -1,0 +1,46 @@
+From 1efc9c50ff489a8320dafd2b0433dafa0ea17cbb Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Fri, 2 Jun 2023 11:34:38 -0700
+Subject: [PATCH] Build libfxlink as a shared library instead of a static one
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ CMakeLists.txt                      | 4 ++--
+ libfxlink/cmake/FindLibFxlink.cmake | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ee4153b..a1ccc92 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -45,7 +45,7 @@ add_custom_target(fxsdk ALL DEPENDS "${BIN}/fxsdk.sh")
+ # libfxlink
+ configure_file(libfxlink/include/fxlink/config.h.in
+   "${BIN}/include/fxlink/config.h")
+-add_library(libfxlink STATIC
++add_library(libfxlink
+   libfxlink/defs.c
+   libfxlink/devices.c
+   libfxlink/filter.c
+@@ -105,3 +105,3 @@ install(DIRECTORY libfxlink/cmake/ DESTINATION lib/cmake)
+-install(TARGETS libfxlink DESTINATION lib)
++install(TARGETS libfxlink)
+ # fxlink
+ install(TARGETS fxlink)
+diff --git a/libfxlink/cmake/FindLibFxlink.cmake b/libfxlink/cmake/FindLibFxlink.cmake
+index ba64f63..239d157 100644
+--- a/libfxlink/cmake/FindLibFxlink.cmake
++++ b/libfxlink/cmake/FindLibFxlink.cmake
+@@ -17,8 +17,8 @@ if(LIBFXLINK_PATH STREQUAL "LIBFXLINK_PATH-NOTFOUND")
+     "You can specify the install path with the environment variable "
+     "FXSDK_PATH, such as FXSDK_PATH=$HOME/.local")
+ else()
++  set(LIBFXLINK_LIB "${LIBFXLINK_PATH}")
+   get_filename_component(LIBFXLINK_PATH "${LIBFXLINK_PATH}/../.." ABSOLUTE)
+-  set(LIBFXLINK_LIB "${LIBFXLINK_PATH}/lib/libfxlink.a")
+   set(LIBFXLINK_INCLUDE "${LIBFXLINK_PATH}/include")
+ 
+   message("(libfxlink) Found libfxlink at: ${LIBFXLINK_LIB}")
+-- 
+2.39.3
+
