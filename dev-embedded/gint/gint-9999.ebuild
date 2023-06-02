@@ -1,4 +1,4 @@
-# Copyright 2022-2023 Gentoo Authors
+# Copyright 2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -32,7 +32,6 @@ BDEPEND="
 	>=dev-embedded/fxsdk-2.9.0
 	dev-util/cmake
 	>=dev-embedded/sh-elf-binutils-2.39
-	<dev-embedded/sh-elf-gcc-12
 "
 
 DEPEND="
