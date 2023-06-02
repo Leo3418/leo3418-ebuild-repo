@@ -1,0 +1,57 @@
+From a23b72f353219f061ae383c017ce08258da9304e Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Thu, 1 Jun 2023 21:15:33 -0700
+Subject: [PATCH] Fix build issue with GNU Make 4.4
+
+When GNU Make 4.4 is used, the package does not build any non-phony
+targets.
+
+This is because the package's Makefile.vars file calls 'make'
+recursively to determine targets to build, like this:
+
+     DISABLE_$1 := $(shell make -f $(SRCDIR)/$1/vars.mk disable 2>/dev/null \
+        && echo y)
+
+This kind of variable assignment is sensitive to what GNU Make prints to
+standard output: if 'make' exits with a non-zero status and also prints
+something to standard output, DISABLE_$1 will be a non-empty string,
+which breaks the build system.
+
+GNU Make 4.4 has a change that affects its standard output behavior
+according to the upstream [1]:
+
+    * WARNING: Backward-incompatibility!
+      Previously if --no-print-directory was seen anywhere in the
+      environment or command line it would take precedence over any
+      --print-directory.  Now, the last setting of directory printing
+      options seen will be used, so a command line such as
+      "--no-print-directory -w" _will_ show directory entry/exits.
+
+Adding the '--no-printing-directory' option to the recursive 'make'
+invocations in Makefile.vars fixes the issue indeed.
+
+[1]: https://lists.gnu.org/archive/html/info-gnu/2022-10/msg00008.html
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ Makefile.vars | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.vars b/Makefile.vars
+index 6c26965..bcad891 100755
+--- a/Makefile.vars
++++ b/Makefile.vars
+@@ -101,8 +101,8 @@ endif
+ 
+ # Get their libs
+ define get-binary-libs
+- LIBS_$1 := $(shell make -f $(SRCDIR)/$1/vars.mk libs 2>/dev/null)
+- DISABLE_$1 := $(shell make -f $(SRCDIR)/$1/vars.mk disable 2>/dev/null \
++ LIBS_$1 := $(shell $(MAKE) -f $(SRCDIR)/$1/vars.mk libs 2>/dev/null)
++ DISABLE_$1 := $(shell $(MAKE) -f $(SRCDIR)/$1/vars.mk disable 2>/dev/null \
+ 	&& echo y)
+ endef
+ $(foreach bin,$(BINARIES), \
+-- 
+2.39.3
+
