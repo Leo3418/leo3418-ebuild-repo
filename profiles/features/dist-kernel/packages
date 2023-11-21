@@ -1,0 +1,5 @@
+# Use vanilla kernel
+*sys-kernel/vanilla-kernel
+
+# Recommended by kernel-install.eclass used by Distribution Kernel packages
+*sys-kernel/linux-firmware

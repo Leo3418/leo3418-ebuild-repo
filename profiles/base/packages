@@ -1,0 +1,20 @@
+# System
+
+# Use GRUB as bootloader
+*sys-boot/grub
+# Use zram as swap
+*sys-block/zram-init
+
+# System Administration
+
+# Use sudo for running restrictive commands
+*app-admin/sudo
+# Install log rotation tool
+*app-admin/logrotate
+
+# User Applications
+
+# Use Vim as default text editor
+*app-editors/vim
+# Install Bash completions
+*app-shells/bash-completion

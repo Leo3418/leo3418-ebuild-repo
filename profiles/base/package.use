@@ -1,0 +1,2 @@
+# Compile Vim with ':terminal' command support
+app-editors/vim terminal

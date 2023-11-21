@@ -1,0 +1,2 @@
+# Enable IBus input method support in Qt applications
+dev-qt/qtgui ibus

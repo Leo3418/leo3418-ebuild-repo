@@ -1,0 +1,26 @@
+# The GNOME meta package
+*gnome-base/gnome
+
+# Additional fonts
+*media-fonts/dejavu
+*media-fonts/noto-emoji
+
+# Video codecs needed by the Videos application
+*media-plugins/gst-plugins-libav
+
+# Packages declared as dependency of gnome-base/gnome-extra-apps that we need
+*sys-apps/baobab
+*media-video/cheese
+*app-arch/file-roller
+*gnome-extra/gnome-calculator
+*gnome-extra/gnome-calendar
+*gnome-extra/gnome-characters
+*sys-apps/gnome-disk-utility
+*media-gfx/gnome-font-viewer
+*media-gfx/gnome-screenshot
+*gnome-extra/gnome-system-monitor
+*gnome-extra/gnome-weather
+*gnome-extra/gnome-tweaks
+
+# Additional GNOME applications
+*gnome-extra/gnome-clocks

@@ -1,0 +1,3 @@
+# Accept keywords for the IANA Time Zone Database package, as
+# the latest version stabilized by Gentoo is often outdated
+sys-libs/timezone-data

@@ -1,0 +1,3 @@
+This directory is reserved for the edition, which does not add anything on top
+of the default profile.  If this changes, then please create a 'parent' or
+'packages' file under this directory accordingly.

@@ -1,0 +1,2 @@
+# Install Vim syntax support files for all packages that provide them
+USE="${USE} vim-syntax"

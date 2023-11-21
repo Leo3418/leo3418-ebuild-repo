@@ -1,0 +1,5 @@
+# Do not enable GUI support for some applications
+app-text/mupdf -X -opengl
+net-firewall/firewalld -gui
+net-print/cups -X
+net-wireless/wpa_supplicant -qt5

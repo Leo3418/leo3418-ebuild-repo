@@ -1,0 +1,3 @@
+# Set USE flags for dm-crypt
+sys-boot/grub device-mapper
+sys-apps/systemd cryptsetup

@@ -1,0 +1,2 @@
+# Required by sys-boot/os-prober
+sys-boot/grub mount

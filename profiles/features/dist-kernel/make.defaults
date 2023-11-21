@@ -1,0 +1,7 @@
+# Enable USE flag for Distribution Kernel
+USE="dist-kernel"
+
+# Remove "/boot/dtbs/*" and "/lib/modules/*" from UNINSTALL_IGNORE
+# to permit automatic clean-up of device tree blobs and kernel modules
+# Note: This is necessary for automatic clean-up even on a merged-usr system
+UNINSTALL_IGNORE="/var/run /var/lock"

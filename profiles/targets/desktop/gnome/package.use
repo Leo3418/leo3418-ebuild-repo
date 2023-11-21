@@ -1,0 +1,16 @@
+# Do not install shell extensions for GNOME Shell Classic mode
+# Do not install additional GNOME applications with gnome-base/gnome
+# Additional applications are picked in the 'packages' file
+gnome-base/gnome -classic -extras
+
+# Avoid dev-util/sysprof dependency
+x11-wm/mutter -sysprof
+
+# Use PipeWire for sound
+media-video/pipewire sound-server
+
+# USE settings required by dependencies
+
+# Required by x11-libs/pango
+# Required by media-video/totem[python]
+media-libs/freetype harfbuzz
