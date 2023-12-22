@@ -21,6 +21,7 @@
 *gnome-extra/gnome-system-monitor
 *gnome-extra/gnome-weather
 *gnome-extra/gnome-tweaks
+*app-crypt/seahorse
 
 # Additional GNOME applications
 *gnome-extra/gnome-clocks
