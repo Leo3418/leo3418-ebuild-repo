@@ -1,4 +1,4 @@
-# Copyright 2022-2023 Gentoo Authors
+# Copyright 2022-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -30,7 +30,7 @@ IUSE="kmalloc-debug +os-stack static-gray usb-debug"
 
 BDEPEND="
 	>=dev-embedded/fxsdk-2.9.0
-	dev-util/cmake
+	dev-build/cmake
 	>=dev-embedded/sh-elf-binutils-2.39
 "
 
