@@ -1,2 +1,9 @@
+# Generate initramfs before installing kernel
+sys-kernel/installkernel dracut
+
 # Automatically run grub-mkconfig upon every kernel installation
 sys-kernel/installkernel grub
+
+# Use the traditional kernel installation layout produced by the installkernel
+# script from debianutils (not supported by systemd's kernel-install)
+sys-kernel/installkernel -systemd
