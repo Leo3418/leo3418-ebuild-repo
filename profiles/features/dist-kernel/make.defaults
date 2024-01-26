@@ -1,10 +1,11 @@
 # Enable USE flag for Distribution Kernel
 USE="dist-kernel"
 
-# Remove "/boot/dtbs/*" and "{,/usr}/lib/modules/*" from UNINSTALL_IGNORE
+# Remove "/boot/dtbs/*" and "/lib/modules/*" from UNINSTALL_IGNORE
 # to permit automatic clean-up of device tree blobs and kernel modules
 # Note: This is necessary for automatic clean-up even on a merged-usr system
 UNINSTALL_IGNORE="/var/run /var/lock"
 # 23.0 profiles are imminent and use merged-usr by default,
 # so just add merged-usr symbolic links unconditionally for now
 UNINSTALL_IGNORE="${UNINSTALL_IGNORE} /bin /lib /lib32 /lib64 /libx32 /sbin /usr/sbin"
+UNINSTALL_IGNORE="${UNINSTALL_IGNORE} /usr/lib/modules/*"
