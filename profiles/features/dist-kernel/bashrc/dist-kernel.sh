@@ -39,8 +39,10 @@ if has kernel-install ${INHERITED}; then
 			"${EROOT}/boot/initramfs-${KV_REL}.img"{,.old}
 		eend $?
 
-		ebegin "Updating bootloader configuration"
-		"${EROOT}/etc/kernel/postinst.d/91-grub-mkconfig.install"
-		eend $?
+		if [[ -z ${REPLACED_BY_VERSION} ]]; then
+			ebegin "Updating bootloader configuration"
+			"${EROOT}/etc/kernel/postinst.d/91-grub-mkconfig.install"
+			eend $?
+		fi
 	}
 fi
