@@ -17,6 +17,7 @@ if has kernel-install ${INHERITED}; then
 			local to_rm=()
 			local symlink
 			for symlink in "${modules_dir}/build" "${modules_dir}/source"; do
+				# Clean up invalid symbolic links
 				[[ -d ${symlink} ]] || to_rm+=( "${symlink}" )
 			done
 			if [[ ${#to_rm[@]} != 0 ]]; then
