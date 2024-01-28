@@ -33,11 +33,18 @@ if has kernel-install ${INHERITED}; then
 			fi
 		fi
 
-		ebegin "Removing kernel files under /boot"
-		rm -f \
+		local to_rm=()
+		local file
+		for file in \
 			"${EROOT}/boot/"{config,System.map,vmlinuz}"-${KV_REL}"{,.old} \
-			"${EROOT}/boot/initramfs-${KV_REL}.img"{,.old}
-		eend $?
+			"${EROOT}/boot/initramfs-${KV_REL}.img"{,.old}; do
+			[[ -e ${file} ]] && to_rm+=( "${file}" )
+		done
+		if [[ ${#to_rm[@]} != 0 ]]; then
+			ebegin "Removing kernel files under /boot"
+			rm "${to_rm[@]}"
+			eend $?
+		fi
 
 		if [[ -z ${REPLACED_BY_VERSION} ]]; then
 			ebegin "Updating bootloader configuration"
