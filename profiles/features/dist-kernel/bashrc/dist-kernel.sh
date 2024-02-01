@@ -37,7 +37,7 @@ if has kernel-install ${INHERITED}; then
 		local to_rm=()
 		local file
 		for file in \
-			"${EROOT}/boot/"{config,System.map,vmlinuz}"-${KV_REL}"{,.old} \
+			"${EROOT}/boot/"{config,kernel,System.map,vmlinux,vmlinuz}"-${KV_REL}"{,.old} \
 			"${EROOT}/boot/initramfs-${KV_REL}.img"{,.old}; do
 			[[ -e ${file} ]] && to_rm+=( "${file}" )
 		done
