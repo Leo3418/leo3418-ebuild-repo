@@ -21,7 +21,7 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-RDEPEND="
+COMMON_DEPEND="
 	app-crypt/libsecret
 	app-crypt/mit-krb5
 	app-misc/geoclue:2.0
@@ -47,7 +47,13 @@ RDEPEND="
 "
 
 DEPEND="
-	${RDEPEND}
+	${COMMON_DEPEND}
+"
+
+RDEPEND="
+	${COMMON_DEPEND}
+	acct-group/gnome-initial-setup
+	acct-user/gnome-initial-setup
 "
 
 src_configure() {
@@ -60,4 +66,13 @@ src_configure() {
 		-Dparental_controls=disabled
 	)
 	meson_src_configure
+}
+
+src_install() {
+	meson_src_install
+	if use systemd; then
+		# acct-user/gnome-initial-setup already creates a sysusers.d file
+		rm "${ED}/usr/lib/sysusers.d/gnome-initial-setup.conf" ||
+			die "Failed to remove redundant sysusers.d file"
+	fi
 }
