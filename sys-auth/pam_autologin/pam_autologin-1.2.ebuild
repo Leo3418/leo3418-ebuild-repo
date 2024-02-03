@@ -1,4 +1,4 @@
-# Copyright 2023 Gentoo Authors
+# Copyright 2023-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -27,10 +27,12 @@ DEPEND="
 
 src_prepare() {
 	default
-	sed -i -e "s/^progs=\".*\"$/progs=\"CC=$(tc-getCC) INSTALL=install\"/" \
+	sed -i -e "s|^progs=\".*\"$|progs='CC=$(tc-getCC) INSTALL=install'|" \
 		configure || die "Failed to set CC in ./configure"
-	sed -i -e "s/^pkgconfig=.*$/pkgconfig=$(tc-getPKG_CONFIG)/" \
+	sed -i -e "s|^pkgconfig=.*$|pkgconfig='$(tc-getPKG_CONFIG)'|" \
 		configure || die "Failed to set PKG_CONFIG in ./configure"
+	sed -i -e 's/s\/@$pname@\/$pcall\//s|@$pname@|$pcall|/' \
+		configure || die "Failed to let ./configure handle path delimiters"
 	sed -i -e '/^[[:space:]]*ldflags[[:space:]]*:= -s$/d' Config.mk.in ||
 		die "Failed to disable pre-stripping in Config.mk.in"
 	sed -i -e 's/^[[:space:]]*@/\t/' Makefile ||
