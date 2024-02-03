@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>liaoyuan@gmail.com</email>
+		<name>Yuan Liao</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="gnome-gitlab">GNOME/gnome-initial-setup</remote-id>
+	</upstream>
+	<use>
+		<flag name="ibus">
+			Enable support for enhanced input methods
+			through <pkg>app-i18n/ibus</pkg>
+		</flag>
+		<flag name="systemd">
+			Enable <pkg>sys-apps/systemd</pkg> integration
+		</flag>
+		<flag name="webkit" restrict="&gt;=gnome-extra/gnome-initial-setup-46_alpha">
+			Enable <pkg>net-libs/webkit-gtk</pkg> dependency,
+			which is used to display privacy policies
+		</flag>
+	</use>
+</pkgmetadata>
