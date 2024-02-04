@@ -10,8 +10,7 @@
 	</upstream>
 	<use>
 		<flag name="ibus">
-			Enable support for enhanced input methods
-			through <pkg>app-i18n/ibus</pkg>
+			Enable IBus input method selection on the keyboard page
 		</flag>
 		<flag name="systemd">
 			Enable <pkg>sys-apps/systemd</pkg> integration
