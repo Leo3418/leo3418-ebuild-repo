@@ -42,17 +42,17 @@ src_prepare() {
 MY_CONFFILE="etc/security/autologin.conf"
 
 print_clean_command() {
-	elog "  shred -u ${EPREFIX}/${MY_CONFFILE}"
+	elog "  shred -u ${EROOT}/${MY_CONFFILE}"
 }
 
 pkg_postinst() {
 	[[ -n ${REPLACING_VERSIONS} ]] && return
 	elog "To quickly get started with this module:"
-	elog "1. At the top of file ${EPREFIX}/etc/pam.d/system-local-login," \
+	elog "1. At the top of file ${EROOT}/etc/pam.d/system-local-login," \
 		"add this line:"
 	elog "     auth optional pam_autologin.so"
 	elog "2. Run this command:"
-	elog "     install -m 600 /dev/null ${EPREFIX}/${MY_CONFFILE}"
+	elog "     install -m 600 /dev/null ${EROOT}/${MY_CONFFILE}"
 	elog "The changes will take effect upon the next login."
 	elog
 	elog "To disable autologin, run this command, which also"
@@ -62,7 +62,7 @@ pkg_postinst() {
 	elog
 	elog "For more information, please consult:"
 	elog "- Manual page pam_autologin(8)"
-	elog "- ${EPREFIX}/usr/share/doc/${PF}/README.md*"
+	elog "- ${EROOT}/usr/share/doc/${PF}/README.md*"
 }
 
 pkg_postrm() {
