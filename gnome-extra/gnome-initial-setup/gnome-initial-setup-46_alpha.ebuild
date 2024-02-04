@@ -76,3 +76,11 @@ src_install() {
 			die "Failed to remove redundant sysusers.d file"
 	fi
 }
+
+pkg_postinst() {
+	[[ -n ${REPLACING_VERSIONS} ]] && return
+	elog "To allow GDM to successfully launch GNOME Initial Setup,"
+	elog "an edit equivalent to the command below is needed:"
+	elog "  sed -i 's/user = gdm/user in gdm:gnome-initial-setup/'" \
+		"${EROOT}/etc/pam.d/gdm-launch-environment"
+}
