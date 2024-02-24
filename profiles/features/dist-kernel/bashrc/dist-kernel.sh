@@ -14,23 +14,17 @@ if has kernel-install ${INHERITED}; then
 
 		local modules_dir="${EROOT}/lib/modules/${KV_REL}"
 		if [[ -d ${modules_dir} ]]; then
-			local to_rm=()
-			local symlink
-			for symlink in "${modules_dir}/build" "${modules_dir}/source"; do
-				# Clean up invalid symbolic links
-				[[ -d ${symlink} ]] || to_rm+=( "${symlink}" )
-			done
-			if [[ ${#to_rm[@]} != 0 ]]; then
-				ebegin "Cleaning up kernel modules directory"
-				rm "${to_rm[@]}"
-				local exit_status=$?
-				eend ${exit_status}
+			ebegin "Cleaning up kernel modules directory"
+			# Clean up invalid symbolic links
+			local deleted="$(find -L "${modules_dir}" -type l -print -delete)"
+			local exit_status=$?
+			eend ${exit_status}
 
-				if [[ ${exit_status} == 0 ]]; then
-					ebegin "Removing kernel modules directory"
-					rmdir "${modules_dir}"
-					eend $?
-				fi
+			# Do not remove the directory if no symbolic links were deleted
+			if [[ -n ${deleted} && ${exit_status} == 0 ]]; then
+				ebegin "Removing kernel modules directory"
+				rmdir "${modules_dir}"
+				eend $?
 			fi
 		fi
 
