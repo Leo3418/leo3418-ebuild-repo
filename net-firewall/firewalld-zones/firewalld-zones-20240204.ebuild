@@ -6,12 +6,12 @@ EAPI=8
 DESCRIPTION="Extra firewalld Zones"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 
+S="${WORKDIR}"
+
 # Package content taken from https://src.fedoraproject.org/rpms/firewalld
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="amd64"
-
-S="${WORKDIR}"
 
 src_install() {
 	local zones_dir="/usr/lib/firewalld/zones"
