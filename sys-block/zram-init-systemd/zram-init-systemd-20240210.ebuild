@@ -8,6 +8,8 @@ inherit systemd
 DESCRIPTION="systemd Units for Better zram-init Integration"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 
+S="${WORKDIR}"
+
 # Package content taken from zram-init
 LICENSE="GPL-2"
 SLOT="0"
@@ -16,8 +18,6 @@ KEYWORDS="amd64"
 RDEPEND="
 	sys-block/zram-init
 "
-
-S="${WORKDIR}"
 
 src_install() {
 	local unit="zram-swap@.service"
