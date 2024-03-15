@@ -13,7 +13,7 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 # - https://src.fedoraproject.org/rpms/fedora-release
 LICENSE="FDL-1.3+ MIT"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 RDEPEND="
 	net-wireless/bluez
