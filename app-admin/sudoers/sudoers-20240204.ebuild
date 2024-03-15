@@ -9,7 +9,7 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 # Package content taken from https://wiki.archlinux.org/title/Sudo
 LICENSE="FDL-1.3+"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 S="${WORKDIR}"
 
