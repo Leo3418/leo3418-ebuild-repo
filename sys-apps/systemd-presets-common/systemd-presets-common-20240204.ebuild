@@ -8,12 +8,12 @@ inherit systemd
 DESCRIPTION="Common systemd Preset Files for All Systems"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 
+S="${WORKDIR}"
+
 # Package content taken from https://src.fedoraproject.org/rpms/fedora-release
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64"
-
-S="${WORKDIR}"
 
 src_install() {
 	local system_preset_dir="$(systemd_get_systempresetdir)"
