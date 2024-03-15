@@ -6,11 +6,11 @@ EAPI=8
 DESCRIPTION="Source VTE's initialization script in non-login shells"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 
+S="${WORKDIR}"
+
 LICENSE="CC0-1.0"
 SLOT="0"
 KEYWORDS="amd64"
-
-S="${WORKDIR}"
 
 src_install() {
 	insinto /etc/bash/bashrc.d
