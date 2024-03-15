@@ -9,7 +9,7 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 # Package content taken from polkit
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 S="${WORKDIR}"
 
