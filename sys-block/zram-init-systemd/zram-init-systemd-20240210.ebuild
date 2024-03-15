@@ -11,7 +11,7 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 # Package content taken from zram-init
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 RDEPEND="
 	sys-block/zram-init
