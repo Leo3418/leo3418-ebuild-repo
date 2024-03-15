@@ -6,12 +6,12 @@ EAPI=8
 DESCRIPTION="GRUB Boot Menu Entries for System Power Options"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 
+S="${WORKDIR}"
+
 # Package content taken from https://wiki.archlinux.org/title/GRUB
 LICENSE="FDL-1.3+"
 SLOT="0"
 KEYWORDS="amd64"
-
-S="${WORKDIR}"
 
 src_install() {
 	local grub_d="/etc/grub.d"
