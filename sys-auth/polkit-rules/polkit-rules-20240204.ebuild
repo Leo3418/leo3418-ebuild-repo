@@ -6,12 +6,12 @@ EAPI=8
 DESCRIPTION="polkit Authorization Rules"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 
+S="${WORKDIR}"
+
 # Package content taken from polkit
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="amd64"
-
-S="${WORKDIR}"
 
 src_install() {
 	local rules_d="/usr/share/polkit-1/rules.d"
