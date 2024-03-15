@@ -6,12 +6,12 @@ EAPI=8
 DESCRIPTION="sudoers Files for Sudo"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 
+S="${WORKDIR}"
+
 # Package content taken from https://wiki.archlinux.org/title/Sudo
 LICENSE="FDL-1.3+"
 SLOT="0"
 KEYWORDS="amd64"
-
-S="${WORKDIR}"
 
 src_install() {
 	local sudoers_d="/etc/sudoers.d"
