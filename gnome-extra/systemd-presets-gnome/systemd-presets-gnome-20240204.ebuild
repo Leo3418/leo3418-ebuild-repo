@@ -8,6 +8,8 @@ inherit systemd
 DESCRIPTION="systemd Preset Files for GNOME"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 
+S="${WORKDIR}"
+
 # Package content taken from:
 # - https://wiki.archlinux.org/title/MPRIS
 # - https://src.fedoraproject.org/rpms/fedora-release
@@ -18,8 +20,6 @@ KEYWORDS="amd64"
 RDEPEND="
 	net-wireless/bluez
 "
-
-S="${WORKDIR}"
 
 src_install() {
 	local system_preset_dir="$(systemd_get_systempresetdir)"
