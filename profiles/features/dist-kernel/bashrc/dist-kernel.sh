@@ -43,7 +43,7 @@ if has kernel-install ${INHERITED}; then
 
 		if [[ -z ${REPLACED_BY_VERSION} ]]; then
 			ebegin "Updating bootloader configuration"
-			"${EROOT}/etc/kernel/postinst.d/91-grub-mkconfig.install"
+			"${EROOT}/usr/lib/kernel/postinst.d/91-grub-mkconfig.install"
 			eend $?
 		fi
 	}
