@@ -5,7 +5,6 @@ USE="dist-kernel"
 # to permit automatic clean-up of device tree blobs and kernel modules
 # Note: This is necessary for automatic clean-up even on a merged-usr system
 UNINSTALL_IGNORE="/var/run /var/lock"
-# 23.0 profiles are imminent and use merged-usr by default,
-# so just add merged-usr symbolic links unconditionally for now
+# Avoid removing merged-usr symbolic links
 UNINSTALL_IGNORE="${UNINSTALL_IGNORE} /bin /lib /lib32 /lib64 /libx32 /sbin /usr/sbin"
 UNINSTALL_IGNORE="${UNINSTALL_IGNORE} /usr/lib/modules/*"
