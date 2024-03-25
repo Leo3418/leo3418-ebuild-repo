@@ -1,8 +1,4 @@
 # AMD64 Profiles
-amd64   default/amd64/workstation                                           dev
-amd64   default/amd64/workstation/intel-cpu                                 dev
-amd64   default/amd64/server                                                dev
-amd64   default/amd64/server/intel-cpu                                      dev
 amd64   default/amd64/23.0/workstation                                      dev
 amd64   default/amd64/23.0/workstation/intel-cpu                            dev
 amd64   default/amd64/23.0/server                                           dev
