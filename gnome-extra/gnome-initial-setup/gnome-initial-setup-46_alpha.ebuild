@@ -10,9 +10,9 @@ HOMEPAGE="https://gitlab.gnome.org/GNOME/gnome-initial-setup"
 
 LICENSE="GPL-2+"
 SLOT="0"
+#KEYWORDS="~amd64"
 # Try to follow the default of gnome-base/gnome-{control-center,shell}::gentoo
 IUSE="+ibus systemd webkit"
-#KEYWORDS="~amd64"
 
 BDEPEND="
 	dev-libs/glib:2
