@@ -28,23 +28,31 @@ if has kernel-install ${INHERITED}; then
 			fi
 		fi
 
-		local to_rm=()
-		local file
-		for file in \
-			"${EROOT}/boot/"{config,kernel,System.map,vmlinux,vmlinuz}"-${KV_REL}"{,.old} \
-			"${EROOT}/boot/initramfs-${KV_REL}.img"{,.old}; do
-			[[ -e ${file} ]] && to_rm+=( "${file}" )
-		done
-		if [[ ${#to_rm[@]} != 0 ]]; then
-			ebegin "Removing kernel files under /boot"
-			rm "${to_rm[@]}"
+		if [[ -z ${ROOT} ]] &&
+			has_version "sys-kernel/installkernel[systemd]"; then
+			ebegin "Removing kernel files using kernel-install"
+			kernel-install remove "${KV_REL}"
 			eend $?
-		fi
+		else
+			local to_rm=()
+			local file
+			for file in \
+				"${EROOT}/boot/"{config,kernel,System.map,vmlinux,vmlinuz}"-${KV_REL}"{,.old} \
+				"${EROOT}/boot/initramfs-${KV_REL}.img"{,.old}; do
+				[[ -e ${file} ]] && to_rm+=( "${file}" )
+			done
+			if [[ ${#to_rm[@]} != 0 ]]; then
+				ebegin "Removing kernel files under /boot"
+				rm "${to_rm[@]}"
+				eend $?
+			fi
 
-		if [[ -z ${REPLACED_BY_VERSION} ]]; then
-			ebegin "Updating bootloader configuration"
-			"${EROOT}/usr/lib/kernel/postinst.d/91-grub-mkconfig.install"
-			eend $?
+			if [[ -z ${REPLACED_BY_VERSION} ]] &&
+				has_version "sys-kernel/installkernel[grub]"; then
+				ebegin "Updating bootloader configuration"
+				"${EROOT}/usr/lib/kernel/postinst.d/91-grub-mkconfig.install"
+				eend $?
+			fi
 		fi
 	}
 fi
