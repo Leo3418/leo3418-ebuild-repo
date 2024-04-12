@@ -19,20 +19,19 @@ IUSE="test"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 RESTRICT="!test? ( test )"
 
-# Dependencies checked by Meson
-COMMON_DEPEND="
+# Dependencies being checked by Meson
+DEPEND="
 	dev-libs/glib:2
-	>=dev-libs/gobject-introspection-1.35.0
+	dev-libs/gobject-introspection
 	net-libs/libsoup:3.0[introspection]
-	>=x11-libs/gtk+-3.22:3[introspection]
+	x11-libs/gtk+:3[introspection]
 	${PYTHON_DEPS}
 	$(python_gen_cond_dep '
-		>=dev-python/pygobject-3.29.1:3[cairo,${PYTHON_USEDEP}]
+		dev-python/pygobject:3[cairo,${PYTHON_USEDEP}]
 	')
 "
 
 BDEPEND="
-	${COMMON_DEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig
 	test? (
@@ -42,10 +41,11 @@ BDEPEND="
 "
 
 RDEPEND="
-	${COMMON_DEPEND}
+	${DEPEND}
+	media-plugins/gst-plugins-pulse
 	app-crypt/libsecret[introspection]
 	dev-libs/totem-pl-parser[introspection]
-	>=gui-libs/libhandy-1.5:1[introspection]
+	gui-libs/libhandy:1[introspection]
 	$(python_gen_cond_dep '
 		dev-python/beautifulsoup4[${PYTHON_USEDEP}]
 		dev-python/gst-python[${PYTHON_USEDEP}]
@@ -56,12 +56,15 @@ RDEPEND="
 src_install() {
 	meson_src_install
 	python_optimize
-	python_fix_shebang "${ED}/usr/bin" "${ED}/usr/libexec"
+	python_fix_shebang "${ED}/usr/bin"
 }
 
 pkg_postinst() {
 	xdg_pkg_postinst
 	gnome2_schemas_update
+	elog "Remember to install the necessary gst-plugins packages to read your audio files."
+	elog "You can also use the gst-plugins-meta pakcage and its USE flags."
+	elog "Lollypop now relies on yt-dlp instead of youtube-dl, since version 1.4.36."
 }
 
 pkg_postrm() {
