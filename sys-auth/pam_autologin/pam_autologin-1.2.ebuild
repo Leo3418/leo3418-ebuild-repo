@@ -7,7 +7,7 @@ inherit toolchain-funcs
 
 DESCRIPTION="PAM module for automatic login"
 HOMEPAGE="https://sourceforge.net/projects/pam-autologin/"
-SRC_URI="mirror://sourceforge/pam-autologin/pam_autologin-${PV}.tar.gz"
+SRC_URI="https://downloads.sourceforge.net/pam-autologin/pam_autologin-${PV}.tar.gz"
 
 LICENSE="ISC"
 SLOT="0"
