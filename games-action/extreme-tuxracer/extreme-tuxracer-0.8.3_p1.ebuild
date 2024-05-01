@@ -15,6 +15,7 @@ SRC_URI="
 	https://downloads.sourceforge.net/extremetuxracer/etr-${MY_PV}.tar.xz -> ${MY_P}.tar.xz
 	!vanilla? ( https://downloads.sourceforge.net/tuxracer/${TUXRACER_DATA_P}.tar.gz )
 "
+S="${WORKDIR}/etr-${MY_PV/_/}"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -34,8 +35,6 @@ BDEPEND="
 		media-sound/sox[ogg]
 	)
 "
-
-S="${WORKDIR}/etr-${MY_PV/_/}"
 
 src_prepare() {
 	default
