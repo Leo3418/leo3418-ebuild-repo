@@ -1,2 +1,3 @@
 # Use zram as swap
 *sys-block/zram-init
+*sys-block/zram-init-systemd

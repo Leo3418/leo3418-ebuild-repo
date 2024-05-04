@@ -11,3 +11,10 @@
 *app-editors/vim
 # Install Bash completions
 *app-shells/bash-completion
+
+# Configuration Files
+
+# sudoers files
+*app-admin/sudoers
+# polkit authorization rules
+*sys-auth/polkit-rules

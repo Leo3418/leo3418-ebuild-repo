@@ -25,3 +25,9 @@
 
 # Additional GNOME applications
 *gnome-extra/gnome-clocks
+
+# Systemd preset files for GNOME
+*gnome-extra/systemd-presets-gnome
+
+# Package that lets VTE be initialized in non-login shells as well
+*gui-libs/vte-bashrc

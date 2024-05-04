@@ -1,2 +1,3 @@
 # Use GRUB as bootloader
 *sys-boot/grub
+*sys-boot/grub-power-options

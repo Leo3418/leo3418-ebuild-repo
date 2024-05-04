@@ -1,2 +1,5 @@
+# Install common systemd preset files
+*sys-apps/systemd-presets-common
+
 # Install tool to run cron jobs installed by some packages under /etc/cron.*
 *sys-process/systemd-cron
