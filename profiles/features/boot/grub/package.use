@@ -1,0 +1,2 @@
+# Automatically run grub-mkconfig upon every kernel installation
+sys-kernel/installkernel grub
