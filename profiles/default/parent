@@ -1,7 +1,9 @@
 ../base
 ../targets/systemd
+../features/boot/grub
 ../features/dist-kernel
 ../features/fs/btrfs
 ../features/fs/fat
 ../features/security/dm-crypt
 ../features/security/firewall
+../features/swap/zram

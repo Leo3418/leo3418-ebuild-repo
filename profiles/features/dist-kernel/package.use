@@ -1,8 +1,5 @@
 # Generate initramfs before installing kernel
 sys-kernel/installkernel dracut
 
-# Automatically run grub-mkconfig upon every kernel installation
-sys-kernel/installkernel grub
-
 # Ensure kernels are installed under /boot rather than the ESP
 <sys-kernel/installkernel-20 -systemd
