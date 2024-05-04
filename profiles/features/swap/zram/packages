@@ -1,0 +1,2 @@
+# Use zram as swap
+*sys-block/zram-init
