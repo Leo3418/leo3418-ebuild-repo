@@ -1,4 +1,4 @@
-# Copyright 2016-2023 Gentoo Authors
+# Copyright 2016-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -16,7 +16,7 @@ else
 	MY_S="${WORKDIR}/${PN}-${GIT_COMMIT}"
 fi
 
-PYTHON_COMPAT=( python3_{10..11} )
+PYTHON_COMPAT=( python3_{10..12} )
 inherit java-pkg-2 java-pkg-simple prefix python-single-r1 ${ECLASS}
 
 DESCRIPTION="Java team tool for semi-automatic creation of ebuilds from pom.xml"
