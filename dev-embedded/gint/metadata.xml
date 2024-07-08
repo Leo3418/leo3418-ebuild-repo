@@ -22,6 +22,6 @@
 		</flag>
 	</use>
 	<upstream>
-		<bugs-to>https://gitea.planet-casio.com/Lephenixnoir/gint/issues</bugs-to>
+		<bugs-to>https://git.planet-casio.com/Lephenixnoir/gint/issues</bugs-to>
 	</upstream>
 </pkgmetadata>

@@ -7,16 +7,16 @@ inherit sh-elf
 
 if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
-	EGIT_REPO_URI="https://gitea.planet-casio.com/Lephenixnoir/gint.git"
+	EGIT_REPO_URI="https://git.planet-casio.com/Lephenixnoir/gint.git"
 	EGIT_BRANCH="dev"
 else
-	SRC_URI="https://gitea.planet-casio.com/Lephenixnoir/gint/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://git.planet-casio.com/Lephenixnoir/gint/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}"
 	KEYWORDS="~amd64"
 fi
 
 DESCRIPTION="Library & kernel for add-ins on CASIO fx-9860G and fx-CG50 graphing calculators"
-HOMEPAGE="https://gitea.planet-casio.com/Lephenixnoir/gint"
+HOMEPAGE="https://git.planet-casio.com/Lephenixnoir/gint"
 
 LICENSE="Lephenixnoir"
 SLOT="0"
