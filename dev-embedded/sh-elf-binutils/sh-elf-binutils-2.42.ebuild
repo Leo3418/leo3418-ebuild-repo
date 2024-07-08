@@ -10,7 +10,7 @@ inherit libtool flag-o-matic gnuconfig strip-linguas
 
 DESCRIPTION="GNU binutils targeted at SH3/SH4 processors on CASIO graphing calculators"
 HOMEPAGE="
-	https://gitea.planet-casio.com/Lephenixnoir/sh-elf-binutils
+	https://git.planet-casio.com/Lephenixnoir/sh-elf-binutils
 	https://sourceware.org/binutils/
 "
 SRC_URI="mirror://gnu/binutils/binutils-${PV}.tar.xz"
@@ -44,7 +44,7 @@ DEPEND="
 "
 
 # The fxsdk/cmake/FX{9860G,CG50}.cmake files under the fxSDK source tree
-# <https://gitea.planet-casio.com/Lephenixnoir/fxsdk> state that:
+# <https://git.planet-casio.com/Lephenixnoir/fxsdk> state that:
 #
 # # Target triplet: sh-elf (custom sh3eb-elf supporting sh3 and sh4-nofpu)
 #
@@ -140,7 +140,7 @@ src_configure() {
 		$(use_with zstd)
 	)
 
-	# Adapted from https://gitea.planet-casio.com/Lephenixnoir/sh-elf-binutils#method-3-fully-manually
+	# Adapted from https://git.planet-casio.com/Lephenixnoir/sh-elf-binutils/src/branch/master/configure.sh
 	myconf+=(
 		--with-multilib-list=m3,m4-nofpu
 		--program-prefix="${PROGRAM_PREFIX}"

@@ -9,7 +9,7 @@
 		This package provides a copy of <pkg>sys-devel/binutils</pkg> that is
 		targeted at the SH3 and SH4 processors found on CASIO graphing
 		calculators.  It uses package configure options used in
-		https://gitea.planet-casio.com/Lephenixnoir/sh-elf-binutils
+		https://git.planet-casio.com/Lephenixnoir/sh-elf-binutils
 		plus extra options to adapt this package for Gentoo and Portage.
 	</longdescription>
 </pkgmetadata>
