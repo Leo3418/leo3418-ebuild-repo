@@ -6,6 +6,6 @@
 		<name>Yuan Liao</name>
 	</maintainer>
 	<upstream>
-		<bugs-to>https://gitea.planet-casio.com/Lephenixnoir/fxsdk/issues</bugs-to>
+		<bugs-to>https://git.planet-casio.com/Lephenixnoir/fxsdk/issues</bugs-to>
 	</upstream>
 </pkgmetadata>

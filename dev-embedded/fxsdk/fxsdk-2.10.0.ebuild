@@ -8,16 +8,16 @@ inherit cmake optfeature python-r1
 
 if [[ "${PV}" == 9999 ]]; then
 	inherit git-r3
-	EGIT_REPO_URI="https://gitea.planet-casio.com/Lephenixnoir/fxsdk.git"
+	EGIT_REPO_URI="https://git.planet-casio.com/Lephenixnoir/fxsdk.git"
 	EGIT_BRANCH="dev"
 else
-	SRC_URI="https://gitea.planet-casio.com/Lephenixnoir/fxsdk/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://git.planet-casio.com/Lephenixnoir/fxsdk/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}"
 	KEYWORDS="~amd64"
 fi
 
 DESCRIPTION="Development tools for add-ins on CASIO fx-9860G and fx-CG50 graphing calculators"
-HOMEPAGE="https://gitea.planet-casio.com/Lephenixnoir/fxsdk"
+HOMEPAGE="https://git.planet-casio.com/Lephenixnoir/fxsdk"
 
 LICENSE="MIT"
 SLOT="0"
