@@ -6,6 +6,6 @@
 		<name>Yuan Liao</name>
 	</maintainer>
 	<upstream>
-		<bugs-to>https://gitea.planet-casio.com/Vhex-Kernel-Core/fxlibc/issues</bugs-to>
+		<bugs-to>https://git.planet-casio.com/Vhex-Kernel-Core/fxlibc/issues</bugs-to>
 	</upstream>
 </pkgmetadata>
