@@ -24,8 +24,17 @@ KEYWORDS="~amd64"
 
 # binutils' configure script may automagically enable support for installed
 # dependencies that it detects if the related configuration option is never
-# specified
-IUSE="+nls zstd"
+# specified.  The scripts in the sh-elf-binutils repository barely include any
+# such options, so a lot of dependencies' support would be automagically
+# configured.
+#
+# To minimize the difference between the tools built by this ebuild and the
+# tools one might get by running the sh-elf-binutils scripts outside Portage on
+# a Gentoo system, USE flags whose USE-conditional dependencies are installed
+# in a new stage3 environment are enabled by default.  Such USE flags include:
+#
+# - zstd: app-arch/zstd pulled in by sys-apps/portage
+IUSE="+nls +zstd"
 
 BDEPEND="
 	sys-devel/flex
