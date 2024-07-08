@@ -28,6 +28,9 @@ SLOT="0"
 # and is thus enabled by default accordingly.
 IUSE="kmalloc-debug +os-stack static-gray usb-debug"
 
+# Stripping LTO objects might break them
+RESTRICT="strip"
+
 BDEPEND="
 	>=dev-embedded/fxsdk-2.9.0
 	dev-build/cmake
