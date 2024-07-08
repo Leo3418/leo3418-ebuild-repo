@@ -24,6 +24,9 @@ HOMEPAGE="https://git.planet-casio.com/Vhex-Kernel-Core/fxlibc"
 LICENSE="CC0-1.0 BSD MIT"
 SLOT="0"
 
+# Stripping LTO objects might break them
+RESTRICT="strip"
+
 DEPEND="
 	>=dev-embedded/sh3eb-openlibm-0.7.5_p2
 "
