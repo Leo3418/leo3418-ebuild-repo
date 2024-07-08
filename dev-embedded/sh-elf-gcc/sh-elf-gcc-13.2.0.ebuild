@@ -63,6 +63,10 @@ DEPEND="
 CTARGET="sh3eb-fx-elf"
 PROGRAM_PREFIX="${PN%"${MY_PN}"}"
 
+PATCHES=(
+	"${FILESDIR}/gcc-13.1.0-fix-CROSS_SYSTEM_HEADER_DIR.patch"
+)
+
 pkg_setup() {
 	# We don't want to use the installed compiler's specs to build gcc
 	unset GCC_SPECS

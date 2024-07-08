@@ -1,0 +1,38 @@
+From db03758a06f31ac0cad562a1662d7f7859a5d289 Mon Sep 17 00:00:00 2001
+From: Yuan Liao <liaoyuan@gmail.com>
+Date: Mon, 8 Jul 2024 10:09:42 -0400
+Subject: [PATCH] Revert "Set CROSS_SYSTEM_HEADER_DIR according includedir"
+
+This reverts commit 59e4c98173a79fcaa2c33253261409f38856c384.  While
+building libstdc++, the reverted commit would cause build errors with
+the ebuilds' --includedir value, like:
+
+/tmp/gcc/build/gcc/include/limits.h:205:15: fatal error: limits.h: No such file or directory
+  205 | #include_next <limits.h>                /* recurse down to the real one */
+      |               ^~~~~~~~~~
+
+Signed-off-by: Yuan Liao <liaoyuan@gmail.com>
+---
+ gcc/Makefile.in | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/gcc/Makefile.in b/gcc/Makefile.in
+index ad9a5d94cd0..b8abc9a70b7 100644
+--- a/gcc/Makefile.in
++++ b/gcc/Makefile.in
+@@ -532,11 +532,7 @@ LINKER_PLUGIN_API_H = $(srcdir)/../include/plugin-api.h
+ # Default native SYSTEM_HEADER_DIR, to be overridden by targets.
+ NATIVE_SYSTEM_HEADER_DIR = @NATIVE_SYSTEM_HEADER_DIR@
+ # Default cross SYSTEM_HEADER_DIR, to be overridden by targets.
+-ifeq (@includedir@,$(prefix)/include)
+-  CROSS_SYSTEM_HEADER_DIR = @CROSS_SYSTEM_HEADER_DIR@
+-else
+-  CROSS_SYSTEM_HEADER_DIR = @includedir@
+-endif
++CROSS_SYSTEM_HEADER_DIR = @CROSS_SYSTEM_HEADER_DIR@
+ 
+ # autoconf sets SYSTEM_HEADER_DIR to one of the above.
+ # Purge it of unnecessary internal relative paths
+-- 
+2.44.2
+
