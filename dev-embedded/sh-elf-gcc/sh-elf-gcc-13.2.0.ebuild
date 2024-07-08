@@ -10,7 +10,7 @@ inherit edo flag-o-matic gnuconfig libtool
 
 DESCRIPTION="Cross-compiling GCC targeted at SH3/SH4 processors on CASIO graphing calculators"
 HOMEPAGE="
-	https://gitea.planet-casio.com/Lephenixnoir/sh-elf-gcc
+	https://git.planet-casio.com/Lephenixnoir/sh-elf-gcc
 	https://gcc.gnu.org/
 "
 SRC_URI="mirror://gnu/gcc/gcc-${PV}/gcc-${PV}.tar.xz"
@@ -175,7 +175,7 @@ src_configure() {
 	# so always enable C++ for better user experience
 	local GCC_LANG="c,c++"
 
-	# Adapted from https://gitea.planet-casio.com/Lephenixnoir/sh-elf-gcc/src/branch/master/configure.sh
+	# Adapted from https://git.planet-casio.com/Lephenixnoir/sh-elf-gcc/src/branch/master/configure.sh
 	confgcc+=(
 		--with-multilib-list=m3,m4-nofpu
 		--enable-languages="${GCC_LANG}"
