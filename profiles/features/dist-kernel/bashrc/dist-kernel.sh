@@ -5,8 +5,6 @@ if has kernel-install ${INHERITED}; then
 		local relfile="${kernel_dir}/include/config/kernel.release"
 		# Store kernel release for use in pkg_postrm
 		KV_REL="$(<"${relfile}")" || KV_REL="${dir_ver}"
-
-		kernel-install_pkg_prerm
 	}
 
 	pkg_postrm() {
