@@ -36,4 +36,3 @@
 # kernel" package for the Asahi Linux kernel is now available in ::asahi
 # <https://github.com/chadmed/asahi-overlay>.  Removal on 2024-07-31.
 sys-kernel/asahi-kernel
-sys-kernel/asahi-edge-kernel
