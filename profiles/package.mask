@@ -30,9 +30,3 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
-
-# Yuan Liao <liaoyuan@gmail.com> (2024-07-01)
-# ebuilds have not been updated for a long while; an up-to-date "distribution
-# kernel" package for the Asahi Linux kernel is now available in ::asahi
-# <https://github.com/chadmed/asahi-overlay>.  Removal on 2024-07-31.
-sys-kernel/asahi-kernel
