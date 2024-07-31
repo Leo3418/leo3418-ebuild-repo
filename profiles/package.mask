@@ -37,5 +37,3 @@
 # <https://github.com/chadmed/asahi-overlay>.  Removal on 2024-07-31.
 sys-kernel/asahi-kernel
 sys-kernel/asahi-edge-kernel
-=virtual/dist-kernel-6.2_p*
-=virtual/dist-kernel-6.3_p*
