@@ -1,9 +1,6 @@
 # Generate initramfs before installing kernel
 sys-kernel/installkernel dracut
 
-# Ensure kernels are installed under /boot rather than the ESP
-<sys-kernel/installkernel-20 -systemd
-
 # Disable debugging support enabled by ::gentoo profiles to reduce the memory
 # footprint of builds; sys-apps/systemd[bpf] is not enabled by default yet
 >=sys-kernel/gentoo-kernel-6.10.8 -debug
