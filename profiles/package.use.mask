@@ -1,9 +1,2 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-
-# Yuan Liao <liaoyuan@gmail.com> (2023-03-01)
-# dev-util/bindgen is not keyworded on arm64.
-# (This should have been added to profiles/arch/arm64/package.use.mask,
-# but the profiles/arch directory in an auxiliary ebuild repository is
-# not honored.)
-sys-kernel/asahi-edge-kernel gpu-driver
