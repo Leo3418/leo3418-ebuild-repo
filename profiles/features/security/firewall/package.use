@@ -5,4 +5,4 @@ net-firewall/firewalld nftables -iptables
 sys-apps/iproute2 -iptables
 
 # Required by net-firewall/firewalld
-net-firewall/nftables json python
+net-firewall/nftables json python xtables
