@@ -1,8 +1,2 @@
-# Use nftables only; do not use other back ends
-net-firewall/firewalld nftables -iptables
-
-# Do not install iptables with other packages
-sys-apps/iproute2 -iptables
-
 # Required by net-firewall/firewalld
 net-firewall/nftables json python xtables
