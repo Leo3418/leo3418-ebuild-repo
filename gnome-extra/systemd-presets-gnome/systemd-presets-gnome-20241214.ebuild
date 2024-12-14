@@ -14,7 +14,7 @@ S="${WORKDIR}"
 # - https://src.fedoraproject.org/rpms/fedora-release
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 RDEPEND="
 	net-wireless/bluez
