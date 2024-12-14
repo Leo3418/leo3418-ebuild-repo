@@ -16,10 +16,6 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64"
 
-RDEPEND="
-	net-wireless/bluez
-"
-
 src_install() {
 	local system_preset_dir="$(systemd_get_systempresetdir)"
 	local user_preset_dir="$(systemd_get_utildir)/user-preset"
