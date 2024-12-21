@@ -1,14 +1,19 @@
-# The GNOME meta package
-*gnome-base/gnome
+# Use GNOME-Light to avoid net-libs/webkit-gtk, which takes time to build
+*gnome-base/gnome-light
 
-# Additional fonts
-*media-fonts/dejavu
-*media-fonts/noto-emoji
+# Packages declared as dependencies of gnome-base/gnome that we need
+*gnome-base/gdm
+*x11-themes/sound-theme-freedesktop
 
-# Video codecs needed by the Videos application
-*media-plugins/gst-plugins-libav
+# Packages declared as dependencies of gnome-base/gnome-core-apps that we need
+# gnome-core-apps depends on gnome-extra/yelp, which pulls in webkit-gtk
+*app-editors/gedit
+*app-text/evince
+*gnome-extra/gnome-contacts
+*media-gfx/eog
+*media-video/totem
 
-# Packages declared as dependency of gnome-base/gnome-extra-apps that we need
+# Packages declared as dependencies of gnome-base/gnome-extra-apps that we need
 *sys-apps/baobab
 *media-video/cheese
 *app-arch/file-roller
@@ -25,6 +30,13 @@
 
 # Additional GNOME applications
 *gnome-extra/gnome-clocks
+
+# Additional fonts
+*media-fonts/dejavu
+*media-fonts/noto-emoji
+
+# Video codecs needed by the Videos application
+*media-plugins/gst-plugins-libav
 
 # Systemd preset files for GNOME
 *gnome-extra/systemd-presets-gnome
