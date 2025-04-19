@@ -21,13 +21,14 @@ S="${WORKDIR}/${P/_/-}"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="booke lzma selinux xen zlib"
+IUSE="booke lzma selinux xen zlib zstd"
 
 REQUIRED_USE="lzma? ( zlib )"
 
 DEPEND="
 	lzma? ( app-arch/xz-utils )
 	zlib? ( sys-libs/zlib )
+	zstd? ( app-arch/zstd:= )
 "
 RDEPEND="
 	${DEPEND}
@@ -60,6 +61,7 @@ src_configure() {
 		$(use_with lzma)
 		$(use_with xen)
 		$(use_with zlib)
+		$(use_with zstd)
 	)
 	econf "${myeconfargs[@]}"
 }
