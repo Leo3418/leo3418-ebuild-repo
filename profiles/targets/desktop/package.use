@@ -3,4 +3,4 @@ app-text/mupdf -X -opengl
 media-libs/libv4l -qt6
 net-firewall/firewalld -gui
 net-print/cups -X
-net-wireless/wpa_supplicant -qt6
+net-wireless/wpa_supplicant -gui
