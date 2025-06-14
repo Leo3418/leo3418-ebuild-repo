@@ -12,18 +12,9 @@ if has kernel-install ${INHERITED}; then
 
 		local modules_dir="${EROOT}/lib/modules/${KV_REL}"
 		if [[ -d ${modules_dir} ]]; then
-			ebegin "Cleaning up kernel modules directory"
-			# Clean up invalid symbolic links
-			local deleted="$(find -L "${modules_dir}" -type l -print -delete)"
-			local exit_status=$?
-			eend ${exit_status}
-
-			# Do not remove the directory if no symbolic links were deleted
-			if [[ -n ${deleted} && ${exit_status} == 0 ]]; then
-				ebegin "Removing kernel modules directory"
-				rmdir "${modules_dir}"
-				eend $?
-			fi
+			ebegin "Removing kernel modules directory"
+			rmdir "${modules_dir}"
+			eend $?
 		fi
 
 		if [[ -z ${ROOT} ]] &&
