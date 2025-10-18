@@ -53,7 +53,7 @@ src_install() {
 	# like automatic pausing when headphones are taken off
 	enable mpris-proxy.service
 
-	# Use GNOME Keyring as ssh-agent
+	# Run an SSH authentication agent that integrates with GNOME Keyring
 	enable gcr-ssh-agent.socket
 	_EOF_
 }
