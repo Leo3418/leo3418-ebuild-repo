@@ -14,7 +14,7 @@ S="${WORKDIR}"
 # - https://src.fedoraproject.org/rpms/fedora-release
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 src_install() {
 	local system_preset_dir="$(systemd_get_systempresetdir)"
