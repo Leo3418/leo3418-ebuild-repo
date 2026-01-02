@@ -4,3 +4,7 @@ media-libs/libv4l -qt6
 net-firewall/firewalld -gui
 net-print/cups -X
 net-wireless/wpa_supplicant -gui
+
+# Undo ::gentoo desktop profile's branding enablement for GRUB
+# See profiles/features/boot/grub/package.use for details
+sys-boot/grub -branding

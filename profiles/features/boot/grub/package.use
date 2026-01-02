@@ -1,2 +1,8 @@
+# USE=branding would pull in sys-boot/grub-themes-gentoo, which installs files
+# to /boot/grub; therefore, uninstallation of sys-boot/grub-themes-gentoo may
+# trigger /boot/grub deletion when /boot/grub is a symbolic link, which is
+# undesirable
+sys-boot/grub -branding
+
 # Automatically run grub-mkconfig upon every kernel installation
 sys-kernel/installkernel grub
