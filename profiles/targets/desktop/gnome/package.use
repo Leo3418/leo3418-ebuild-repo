@@ -1,9 +1,6 @@
 # Avoid dev-util/sysprof dependency
 x11-wm/mutter -sysprof
 
-# Use PipeWire for sound
-media-video/pipewire sound-server
-
 # USE settings required by dependencies
 
 # Required by x11-libs/pango

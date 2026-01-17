@@ -1,2 +1,0 @@
-# Enable screen cast using media-video/pipewire
-USE="${USE} screencast"
