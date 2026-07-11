@@ -1,3 +1,6 @@
+# Avoid net-libs/webkit-gtk dependency
+gnome-extra/evolution-data-server -oauth-gtk3
+
 # Avoid dev-util/sysprof dependency
 x11-wm/mutter -sysprof
 
