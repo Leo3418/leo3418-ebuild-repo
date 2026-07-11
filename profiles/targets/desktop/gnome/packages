@@ -14,6 +14,7 @@
 *media-video/totem
 
 # Packages declared as dependencies of gnome-base/gnome-extra-apps that we need
+# gnome-extra/gnome-weather excluded for indirect net-libs/nodejs dependency
 *sys-apps/baobab
 *media-video/cheese
 *app-arch/file-roller
@@ -24,7 +25,6 @@
 *media-gfx/gnome-font-viewer
 *media-gfx/gnome-screenshot
 *gnome-extra/gnome-system-monitor
-*gnome-extra/gnome-weather
 *gnome-extra/gnome-tweaks
 *app-crypt/seahorse
 
