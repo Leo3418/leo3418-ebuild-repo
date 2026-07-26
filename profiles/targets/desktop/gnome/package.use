@@ -1,3 +1,7 @@
+# net-fs/samba is already being installed by default with
+# gnome-base/gnome-control-center[cups], so make the most of it
+gnome-base/gvfs samba
+
 # Avoid net-libs/webkit-gtk dependency
 gnome-extra/evolution-data-server -oauth-gtk3
 
@@ -9,3 +13,8 @@ x11-wm/mutter -sysprof
 # Required by x11-libs/pango
 # Required by media-video/totem[python]
 media-libs/freetype harfbuzz
+
+# Required by gnome-base/gnome-control-center[cups]
+# Required by net-fs/samba
+# Required by net-fs/cifs-utils[acl]
+net-libs/ngtcp2 gnutls
