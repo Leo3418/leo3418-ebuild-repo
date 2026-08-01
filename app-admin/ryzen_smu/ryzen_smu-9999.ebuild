@@ -32,12 +32,3 @@ src_compile() {
 
 	linux-mod-r1_src_compile
 }
-
-src_install() {
-	linux-mod-r1_src_install
-
-	insinto /usr/lib/modules-load.d
-	newins - ryzen_smu.conf <<- _EOF_
-	ryzen_smu
-	_EOF_
-}
