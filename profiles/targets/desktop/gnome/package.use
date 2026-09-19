@@ -14,6 +14,9 @@ x11-wm/mutter -sysprof
 # Required by media-video/totem[python]
 media-libs/freetype harfbuzz
 
+# Required by gnome-extra/gnome-contacts
+media-libs/glycin vala
+
 # Required by gnome-base/gnome-control-center[cups]
 # Required by net-fs/samba
 # Required by net-fs/cifs-utils[acl]
